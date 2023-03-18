@@ -9,7 +9,7 @@ public class GameUnit : MonoBehaviour
     {
         get
         {
-            //tf = tf ?? gameObject.transform;
+            //_trasformPlayer = _trasformPlayer ?? gameObject.transform;
             if (tf == null)
             {
                 tf = transform;

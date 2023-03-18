@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,19 +8,19 @@ public class Player : Character
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private CheckBot _checkBot;
-   // [SerializeField] private GameObject _wpeanponPrefab;
-    [SerializeField] private WeaponCtl _wreaponPrefab;
+    //[SerializeField] private GameObject _wpeanponPrefab;
+    [SerializeField] private WeaponController _wreaponPrefab;
 
     private float _timeRate = 1.1f;
     private float _time = 1.1f;
 
-    private WeaponCtl _obj;
+    private WeaponController _obj;
 
     public bool _isMove;
     public bool _isCanAttack;
     void Start()
     {
-       OnEnableWeapon();
+       //OnEnableWeapon();
     }
     private void Update()
     {
@@ -66,10 +66,6 @@ public class Player : Character
             transform.rotation = Quaternion.LookRotation(direction);
         }
     }
-    private void DoAttack()
-    {
-        
-    }
     public override void Attack()
     {
         base.Attack();
@@ -83,7 +79,6 @@ public class Player : Character
             Vector3 closestTarget = GetClosestTarget();
             float distance = Vector3.Distance(_obj.transform.position, closestTarget);
             float speed = 1f;
-            Vector3 targetDirection = GetDirectionTaget();
             while (distance > 0.1f)
             {
                 _obj.transform.position = Vector3.MoveTowards(_obj.transform.position, closestTarget,speed*Time.deltaTime);
@@ -106,7 +101,7 @@ public class Player : Character
             _time_2 += Time.deltaTime;
             yield return null;
         }
-        _obj = SimplePool.Spawn<WeaponCtl>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity);
+        _obj = SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity);
      /*   var bullet = Instantiate(_wreaponPrefab, _weaponTransform.position, _weaponTransform.rotation);
         bullet.GetComponent<Rigidbody>().velocity = _weaponTransform.forward * _moveSpeed;*/
         yield return null;

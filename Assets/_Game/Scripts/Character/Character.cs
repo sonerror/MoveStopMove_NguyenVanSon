@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
     [SerializeField] public Animator _animator;
     [SerializeField] public GameObject _target;
     [SerializeField] public List<GameObject> _listTarget = new List<GameObject>();
-    [SerializeField] public Transform tf;
+    [SerializeField] public Transform _trasformPlayer;
     [SerializeField] public WeaponType _weaponType;
     [SerializeField] public Transform _weaponTransform;
     private GameObject modelWeapon;
@@ -28,28 +28,27 @@ public class Character : MonoBehaviour
     public Vector3 GetDirectionTaget()//lấy hướng của target
     {
         Vector3 closestTarget = _listTarget[Constant.FRIST_INDEX].transform.position;
-        float closestDistance = Vector3.Distance(tf.position , closestTarget);
+        float closestDistance = Vector3.Distance(_trasformPlayer.position , closestTarget);
         for (int i = 0; i < _listTarget.Count; i++)
         {
-            float distance = Vector3.Distance(tf.position, _listTarget[i].transform.position);
+            float distance = Vector3.Distance(_trasformPlayer.position, _listTarget[i].transform.position);
             if (distance < closestDistance)
             {
                 closestTarget = _listTarget[i].transform.position;
                 closestDistance = distance;
             }
         }
-        Vector3 directionToTarget = closestTarget - tf.position;
+        Vector3 directionToTarget = closestTarget - _trasformPlayer.position;
         Vector3 normalizedDirection = directionToTarget.normalized;
         return normalizedDirection;
     }
-
     public Vector3 GetClosestTarget()//lấy target gần nhất
     {
         Vector3 closestTarget = _listTarget[Constant.FRIST_INDEX].transform.position;
-        float closestDistance = Vector3.Distance(tf.position, closestTarget);// Distance Khoảng cách của 2 điểm vector
+        float closestDistance = Vector3.Distance(_trasformPlayer.position, closestTarget);// Distance Khoảng cách của 2 điểm vector
         for (int i = 0; i < _listTarget.Count; i++)
         {
-            float distance = Vector3.Distance(tf.position, _listTarget[i].transform.position);
+            float distance = Vector3.Distance(_trasformPlayer.position, _listTarget[i].transform.position);
             if (distance < closestDistance)
             {
                 closestTarget = _listTarget[i].transform.position;

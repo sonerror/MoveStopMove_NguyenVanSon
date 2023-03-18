@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3818465458638558227}
   - component: {fileID: 239308223797992374}
   - component: {fileID: 2645520385593831292}
-  - component: {fileID: 3083110310947970202}
   - component: {fileID: -3060171206891989824}
   - component: {fileID: -649594300155962849}
+  - component: {fileID: 5768002899760841893}
   m_Layer: 0
   m_Name: knife
   m_TagString: Untagged
@@ -85,22 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3083110310947970202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4590921423977991849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62586284e85602f4a89015c6d3243866, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolType: 2
-  speed: 1
-  rb: {fileID: -3060171206891989824}
-  _player: {fileID: 0}
 --- !u!54 &-3060171206891989824
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,3 +115,19 @@ CapsuleCollider:
   m_Height: 0.023034047
   m_Direction: 1
   m_Center: {x: -0.0000026705675, y: -0.00003497163, z: 0}
+--- !u!114 &5768002899760841893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590921423977991849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7852a624731b1dc48bb4b7d93df479fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolType: 2
+  speed: 0
+  rb: {fileID: -3060171206891989824}
+  _player: {fileID: 0}
