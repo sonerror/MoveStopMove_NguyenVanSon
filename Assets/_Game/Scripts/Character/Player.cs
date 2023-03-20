@@ -10,7 +10,6 @@ public class Player : Character
     [SerializeField] private CheckBot _checkBot;
     [SerializeField] private GameObject _wpeanponPrefab;
     [SerializeField] private WeaponController _wreaponPrefab;
-    [SerializeField] private float _bulletSpeed = 3f; // Tốc độ viên đạn
 
     private float _timeRate = 1f;
     private float _time = 0f;

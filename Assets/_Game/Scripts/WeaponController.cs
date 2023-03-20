@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponController : GameUnit
 {
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Character _character;
     public void Oninit(Character character, Vector3 target)
@@ -14,7 +14,8 @@ public class WeaponController : GameUnit
     }
     private void Update()
     {
-        if (Vector3.Distance(transform.position, _character.transform.position) < _character._rangeWeapon)
+        float _direction = Vector3.Distance(transform.position, _character.transform.position);
+        if (_direction < _character._rangeWeapon)
         {
             transform.forward = new Vector3(transform.forward.x, 0, transform.forward.z);
             transform.Translate(transform.forward * moveSpeed * Time.deltaTime, Space.World);

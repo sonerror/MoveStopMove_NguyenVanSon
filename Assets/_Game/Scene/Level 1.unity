@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -825,6 +825,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3982405262058758573, guid: 26ea326ba29e50640b91a44b50c32570, type: 3}
+      propertyPath: m_Radius
+      value: 0.2947122
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982405262058758573, guid: 26ea326ba29e50640b91a44b50c32570, type: 3}
+      propertyPath: m_Center.x
+      value: 0.034977794
+      objectReference: {fileID: 0}
     - target: {fileID: 4515191224410548032, guid: 26ea326ba29e50640b91a44b50c32570, type: 3}
       propertyPath: _transformPlayer
       value: 
@@ -1049,6 +1057,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 216619079}
     m_Modifications:
+    - target: {fileID: 2192423507937682755, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192423507937682780, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.00048828
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192423507937682780, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00024414062
+      objectReference: {fileID: 0}
     - target: {fileID: 2192423507969868791, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1149,6 +1169,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas - Joystick
       objectReference: {fileID: 0}
+    - target: {fileID: 2192423508610716934, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 763b9e962d3bfb14785a76b746085763, type: 3}
+    - target: {fileID: 2192423508709061373, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c27be02588a4bfe4e99b67ec5e6ddb6a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
 --- !u!1 &1542463420
@@ -1282,6 +1310,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3982405262058758573, guid: 26ea326ba29e50640b91a44b50c32570, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4515191224410548032, guid: 26ea326ba29e50640b91a44b50c32570, type: 3}
       propertyPath: _transformPlayer
       value: 
@@ -1312,6 +1344,18 @@ PrefabInstance:
     - target: {fileID: 999073005910466574, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -938.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073006807657699, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5424528
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073006807657699, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7698309
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073006807657699, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 999073007072996147, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
       propertyPath: m_Camera
@@ -1364,6 +1408,50 @@ PrefabInstance:
     - target: {fileID: 999073007137135141, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073007137135320, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073007137135320, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073007137135320, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073007137135322, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: _bulletSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073007137135323, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Radius
+      value: 0.4014545
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073007137135323, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Center.x
+      value: -0.024097562
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073007137135323, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Center.z
+      value: -0.03402233
+      objectReference: {fileID: 0}
+    - target: {fileID: 999073007548667830, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660329458071561442, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660329458071561442, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660329458071561442, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
+      propertyPath: m_Direction
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba9bdd3ec56b6c14ba9bcbb262f17a9b, type: 3}
