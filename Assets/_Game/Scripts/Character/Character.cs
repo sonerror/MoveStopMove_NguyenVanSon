@@ -11,7 +11,9 @@ public class Character : MonoBehaviour
     [SerializeField] public WeaponType _weaponType;
     [SerializeField] public Transform _weaponTransform;
     private GameObject modelWeapon;
+    public float _rangeWeapon;
     string _currentAnim;
+
 
     public void OnEnableWeapon()
     {

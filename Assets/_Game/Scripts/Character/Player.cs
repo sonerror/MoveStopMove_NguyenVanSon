@@ -8,19 +8,19 @@ public class Player : Character
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private CheckBot _checkBot;
-    //[SerializeField] private GameObject _wpeanponPrefab;
+    [SerializeField] private GameObject _wpeanponPrefab;
     [SerializeField] private WeaponController _wreaponPrefab;
+    [SerializeField] private float _bulletSpeed = 3f; // Tốc độ viên đạn
 
-    private float _timeRate = 1.1f;
-    private float _time = 1.1f;
-
-    private WeaponController _obj;
+    private float _timeRate = 1f;
+    private float _time = 0f;
 
     public bool _isMove;
     public bool _isCanAttack;
+ 
     void Start()
     {
-       //OnEnableWeapon();
+       OnEnableWeapon();
     }
     private void Update()
     {
@@ -37,7 +37,6 @@ public class Player : Character
                 Attack();
                 _time = 0f;
             }
-
             if (_listTarget.Count > 0)
             {
                 Vector3 direction = GetDirectionTaget();
@@ -48,12 +47,10 @@ public class Player : Character
         {
             ChangAnim(Constant.ANIM_IDLE);
         }
-        StartCoroutine(WeaponMoveToTarget());
     }
     void FixedUpdate()
     {
         Move();
-        
     }
     private void Move()
     {
@@ -71,39 +68,27 @@ public class Player : Character
         base.Attack();
         StartCoroutine(SpawnWeapon());
     }
-    IEnumerator WeaponMoveToTarget()
-    {
-  
-        if (_obj != null && _listTarget.Count > 0)
-        {
-            Vector3 closestTarget = GetClosestTarget();
-            float distance = Vector3.Distance(_obj.transform.position, closestTarget);
-            float speed = 1f;
-            while (distance > 0.1f)
-            {
-                _obj.transform.position = Vector3.MoveTowards(_obj.transform.position, closestTarget,speed*Time.deltaTime);
-                float distance_1 = Vector3.Distance(transform.position, _obj.transform.position);
-                if (distance_1 > 6f)
-                {
-                    _obj.OnDespawn();
-                }
-                yield return null;
-            }
-        }
-        yield return null;
-    }
     IEnumerator SpawnWeapon()
     {
+
         float timeRate = 0.4f;
-        float _time_2 = 0; ;
-        while (_time_2 < timeRate)
+        float _time = 0;
+
+        while (_time < timeRate)
         {
-            _time_2 += Time.deltaTime;
+            _time += Time.deltaTime;
             yield return null;
+            if (Input.GetMouseButton(0))
+            {
+                goto Lable;
+            }
         }
-        _obj = SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity);
-     /*   var bullet = Instantiate(_wreaponPrefab, _weaponTransform.position, _weaponTransform.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = _weaponTransform.forward * _moveSpeed;*/
+        if (_listTarget.Count > 0)
+        {
+            Vector3 target = GetClosestTarget();
+            SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity).Oninit(this, target);
+        }
+    Lable:
         yield return null;
     }
 }

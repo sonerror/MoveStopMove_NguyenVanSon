@@ -4,10 +4,26 @@ using UnityEngine;
 
 public class WeaponController : GameUnit
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private Player _player;
-
+    [SerializeField] private Character _character;
+    public void Oninit(Character character, Vector3 target)
+    {
+        this._character = character;
+        transform.forward = (target - transform.position).normalized;
+    }
+    private void Update()
+    {
+        if (Vector3.Distance(transform.position, _character.transform.position) < _character._rangeWeapon)
+        {
+            transform.forward = new Vector3(transform.forward.x, 0, transform.forward.z);
+            transform.Translate(transform.forward * moveSpeed * Time.deltaTime, Space.World);
+        }
+        else
+        {
+            OnDespawn();
+        }
+    }
     public void OnDespawn()
     {
         SimplePool.Despawn(this);
