@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     string _currentAnim;
 
 
-    public void OnEnableWeapon()
+    public void OnEnableWeapon()//Tạo ra vũ khí trên tay
     {
         if (modelWeapon != null)
         {
@@ -26,6 +26,14 @@ public class Character : MonoBehaviour
             modelWeapon = Instantiate(_weaponType._weapon);
             modelWeapon.transform.SetParent(_weaponTransform, false);
         }
+    }
+    public virtual void OnInit()
+    {
+
+    }
+    private void Start()
+    {
+        OnInit();
     }
     public Vector3 GetDirectionTaget()//lấy hướng của target
     {
@@ -59,7 +67,7 @@ public class Character : MonoBehaviour
         }
         return closestTarget;
     }
-    public void ChangAnim(string animName)
+    public void ChangAnim(string animName) // chuyen Animation 
     {
         if (_currentAnim != animName)
         {

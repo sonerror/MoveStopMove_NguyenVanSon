@@ -5,32 +5,23 @@ using UnityEngine.AI;
 
 public class Bot : Character
 {
-    private Transform target;
     private NavMeshAgent _agent;
-    private float _timer;
-    private bool _running = false;
-
     public float _wanderRadius;
     public float _wanderTimer;
-    private float _time = 5;
+    private float _timer;
+    private IState _currentState;
+    private bool _isMove;
+    [SerializeField] private WeaponController _weapon;
 
-    void Start()
+    private float _timeRate = 1f;
+    private float _time = 0f;
+    private void Awake()
     {
-        StartCoroutine(Pause2s());
+        ChangeState(new PatrolState());
     }
-    private IEnumerator Pause2s()
+    private void Start()
     {
-        //pause
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(Continute5s());
-
-    }
-    private IEnumerator Continute5s()
-    {
-        //continute
-        yield return new WaitForSeconds(5f);
-
-        StartCoroutine(Pause2s());
+        OnEnableWeapon();
     }
     void OnEnable()
     {
@@ -39,45 +30,94 @@ public class Bot : Character
     }
     private void Update()
     {
-        
-        if (!_running)
+        _time += Time.deltaTime;
+
+       if (!_isMove && _listTarget.Count > 0)
         {
-            ChangAnim(Constant.EANIM_IDLE);
-        }    
-    }
-    void FixedUpdate()
-    {
-        // BotMoving();
-        //Invoke(nameof(BotMoving), 2f);
-    }
-/*    IEnumerator MoveForDuration()
-    {
-        _running = true;
-        float _timeLapsed = 0;
-        while(_timeLapsed < _time)
-        {
-            StopMove();
-            _timeLapsed += Time.deltaTime;
-            yield return null;
+            if (_time >= _timeRate)
+            {
+                Attack();
+                _time = 0f;
+            }
+            if (_listTarget.Count > 0)
+            {
+                Vector3 direction = GetDirectionTaget();
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
+            else if (_listTarget.Count < 0)
+            {
+                _isMove= true;
+                ChangeState(new PatrolState());
+            }
         }
-        _running = false;
-    }*/
-    public void BotMoving()
+        if (_currentState != null)
+        {
+            _currentState.OnExecute(this);
+        }
+    }
+    public override void OnInit()
     {
-        _running = true;
+        base.OnInit();
+    }
+    public void Moving()
+    {
+        _agent.enabled= true;
         _timer += Time.deltaTime;
         if (_timer >= _wanderTimer)
         {
             Vector3 newPos = RandomNavSphere(transform.position, _wanderRadius, -1);
             _agent.SetDestination(newPos);
+            _isMove = true;
             ChangAnim(Constant.EANIM_RUN);
             _timer = 0;
         }
     }
-    public void StopMove()
+    public void StopMoving()
     {
-        _running = false;
+        _isMove = false;
+        _agent.enabled= false;
+        ChangAnim(Constant.EANIM_IDLE);
+    }
 
+    public override void Attack()
+    {
+        ChangAnim(Constant.EANIM_ATTACK);
+        StartCoroutine(SpawnWeaponBot());
+    }
+    IEnumerator SpawnWeaponBot()
+    {
+        float timeRate = 0.4f;
+        float _time = 0;
+        while (_time < timeRate)
+        {
+            _time += Time.deltaTime;
+            yield return null;
+            if (_isMove)
+            {
+                goto Lable;
+            }
+        }
+        if (_listTarget.Count > 0)
+        {
+            Vector3 target = GetClosestTarget();
+            SimplePool.Spawn<WeaponController>(_weapon, _weaponTransform.position, Quaternion.identity).Oninit(this, target);
+        }
+    Lable:
+        yield return null;
+        Debug.Log("check weapon");
+    }
+    public void ChangeState(IState newState)
+    {
+        if (_currentState != null)
+        {
+            _currentState.OnExit(this);
+        }
+        _currentState = newState;
+
+        if (_currentState != null)
+        {
+            _currentState.OnEnter(this);
+        }
     }
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
@@ -86,6 +126,6 @@ public class Bot : Character
         NavMeshHit navHit;
         NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
         return navHit.position;
-    }
+    } 
 }
 //https://stackoverflow.com/questions/61887165/how-to-make-navmesh-agent-stop-and-then-continue-his-movement

@@ -7,9 +7,7 @@ public class Player : Character
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _rotateSpeed;
-    [SerializeField] private CheckBot _checkBot;
-    [SerializeField] private GameObject _wpeanponPrefab;
-    [SerializeField] private WeaponController _wreaponPrefab;
+    [SerializeField] private WeaponController _weaponPrefab;
 
     private float _timeRate = 1f;
     private float _time = 0f;
@@ -85,7 +83,7 @@ public class Player : Character
         if (_listTarget.Count > 0)
         {
             Vector3 target = GetClosestTarget();
-            SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity).Oninit(this, target);
+            SimplePool.Spawn<WeaponController>(_weaponPrefab, _weaponTransform.position, Quaternion.identity).Oninit(this, target);
         }
     Lable:
         yield return null;

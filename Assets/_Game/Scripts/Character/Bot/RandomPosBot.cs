@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RandomPosBot : MonoBehaviour
 {
     [SerializeField] private Transform _transformPlayer;
     [SerializeField] private Transform _transformBot;
     [SerializeField] private float _about;
+    public float _wanderRadius;
 
     private void Start()
     {

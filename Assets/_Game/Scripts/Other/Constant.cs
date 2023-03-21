@@ -8,10 +8,12 @@ public class Constant
     public const string ANIM_ULTI = "ulti";
     public const string EANIM_RUN = "ERun";
     public const string EANIM_IDLE = "EIdle";
+    public const string EANIM_ATTACK = "EAttack";
 
     public const string TAG_CHARACTER = "Character";
     public const string TAG_BOT = "Bot";
     public const string TAG_BLOCK = "Block";
+    public const string TAG_PLAYER = "Player";
 
     public const int FRIST_INDEX = 0;
 }
