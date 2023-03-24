@@ -1,32 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolState : IState
+public class PatrolState : IState<Bot>
 {
-    float _randomTime;
-    float _timer;
+    float timer;
+    float time;
     public void OnEnter(Bot bot)
     {
-        _timer = 0;
-        _randomTime = Random.Range(3f, 6f);
+        time = 0f;
+        timer = 1f;
     }
-
     public void OnExecute(Bot bot)
     {
-        _timer += Time.deltaTime;
-        if (_timer < _randomTime)
+        bot.Moving();
+        time += Time.deltaTime;
+        if (bot._listTarget.Count > 0 && time > timer)
         {
-            bot.Moving();
+            bot.StopMoving();
+            bot.ChangeState(new AttackState());
+            time = 0f;
         }
-        else 
-        {  
-            bot.ChangeState(new IdleState());
+        if (bot._isDead)
+        {
+            bot.ChangeState(new DeadState());
         }
-
     }
     public void OnExit(Bot bot)
     {
-       
+
     }
 }

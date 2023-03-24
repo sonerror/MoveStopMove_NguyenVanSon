@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8441018b9389049bf8f8c23d30755e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolType: 0
   _animator: {fileID: 2751097475805795419}
   _target: {fileID: 0}
   _listTarget: []
@@ -71,14 +72,13 @@ MonoBehaviour:
   _weaponType: {fileID: 11400000, guid: 71811e7757eaa854ba9a720c62c05996, type: 2}
   _weaponTransform: {fileID: 999073007520434041}
   _rangeWeapon: 5
+  _isDead: 0
   _rb: {fileID: 999073007137135320}
   _moveSpeed: 5
   _rotateSpeed: 4
-  _checkBot: {fileID: 0}
-  _wpeanponPrefab: {fileID: 4590921423977991849, guid: 90075b17f3e5bab4da2e0ede664e855f, type: 3}
-  _wreaponPrefab: {fileID: 5768002899760841893, guid: 90075b17f3e5bab4da2e0ede664e855f, type: 3}
+  _weaponPrefab: {fileID: 0}
   _isMove: 0
-  _isCanAttack: 0
+  _isAttack: 0
 --- !u!136 &999073007137135323
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 999073007137135322}
+  _bot: {fileID: 0}
 --- !u!1 &7013135226516287658
 GameObject:
   m_ObjectHideFlags: 0

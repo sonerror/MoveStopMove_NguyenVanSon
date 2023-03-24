@@ -7,7 +7,6 @@ public class RandomPosBot : MonoBehaviour
 {
     [SerializeField] private Transform _transformPlayer;
     [SerializeField] private Transform _transformBot;
-    [SerializeField] private float _about;
     public float _wanderRadius;
 
     private void Start()
@@ -16,15 +15,17 @@ public class RandomPosBot : MonoBehaviour
     }
     void RandomPositonBot()
     {
-        float RandomX = Random.Range(-_about, _about);
-        float RandomZ = Random.Range(-_about, _about);
-
-        _transformBot.position = new Vector3(RandomX, 0, RandomZ);
         while(Vector3.Distance(_transformPlayer.position,_transformBot.position) < 5f)
         {
-            RandomX = Random.Range(-_about, _about);
-            RandomZ = Random.Range(-_about, _about);
-            _transformBot.position = new Vector3(RandomX, 0, RandomZ);
+            _transformBot.position = RandomNavSphere(transform.position, _wanderRadius, -1);
         }
+    }
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+        randDirection += origin;
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+        return navHit.position;
     }
 }

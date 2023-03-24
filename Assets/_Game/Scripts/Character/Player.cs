@@ -13,16 +13,17 @@ public class Player : Character
     private float _time = 0f;
 
     public bool _isMove;
-    public bool _isCanAttack;
- 
+    public bool _isAttack;
+
     void Start()
     {
-       OnEnableWeapon();
+        OnEnableWeapon();
     }
     private void Update()
     {
+
         _time += Time.deltaTime;
-    
+
         if (Input.GetMouseButtonUp(0))
         {
             _isMove = false;
@@ -54,14 +55,19 @@ public class Player : Character
         if (Input.GetMouseButton(0) && JoystickControl.direct != Vector3.zero)
         {
             _isMove = true;
-            _rb.MovePosition(_rb.position + JoystickControl.direct *_moveSpeed * Time.fixedDeltaTime);
+            _rb.MovePosition(_rb.position + JoystickControl.direct * _moveSpeed * Time.fixedDeltaTime);
             ChangAnim(Constant.ANIM_RUN);
             Vector3 direction = Vector3.RotateTowards(transform.forward, JoystickControl.direct, _rotateSpeed * Time.deltaTime, 0.0f);
             transform.rotation = Quaternion.LookRotation(direction);
         }
     }
+    private void StopMoving()
+    {
+        _moveSpeed = 0.1f;
+    }
     public override void Attack()
     {
+        _isAttack = true;
         base.Attack();
         StartCoroutine(SpawnWeapon());
     }
@@ -87,5 +93,13 @@ public class Player : Character
         }
     Lable:
         yield return null;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(Constant.TAG_BULLET))
+        {
+            _isAttack = false;
+            ChangAnim(Constant.ANIM_DEAD);
+        }
     }
 }

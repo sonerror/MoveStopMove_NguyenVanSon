@@ -31,9 +31,12 @@ public class WeaponController : GameUnit
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Constant.TAG_BOT) || other.CompareTag(Constant.TAG_BLOCK))
+        if (other.CompareTag(Constant.TAG_BOT))
         {
+            Debug.Log(other.gameObject.name);
             OnDespawn();
+            other.GetComponent<Character>().OnDead();
+            _character._listTarget.Remove(other.gameObject);
         }
     }
 }

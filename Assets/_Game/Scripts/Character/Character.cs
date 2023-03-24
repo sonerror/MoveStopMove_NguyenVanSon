@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : GameUnit
 {
     [SerializeField] public Animator _animator;
     [SerializeField] public GameObject _target;
@@ -13,20 +13,8 @@ public class Character : MonoBehaviour
     private GameObject modelWeapon;
     public float _rangeWeapon;
     string _currentAnim;
+    public bool _isDead;
 
-
-    public void OnEnableWeapon()//Tạo ra vũ khí trên tay
-    {
-        if (modelWeapon != null)
-        {
-            Destroy(modelWeapon);
-        }
-        if (_weaponType._weapon != null)
-        {
-            modelWeapon = Instantiate(_weaponType._weapon);
-            modelWeapon.transform.SetParent(_weaponTransform, false);
-        }
-    }
     public virtual void OnInit()
     {
 
@@ -37,7 +25,7 @@ public class Character : MonoBehaviour
     }
     public Vector3 GetDirectionTaget()//lấy hướng của target
     {
-        Vector3 closestTarget = _listTarget[Constant.FRIST_INDEX].transform.position;
+        Vector3 closestTarget = _listTarget[0].transform.position;
         float closestDistance = Vector3.Distance(_trasformPlayer.position , closestTarget);
         for (int i = 0; i < _listTarget.Count; i++)
         {
@@ -54,7 +42,7 @@ public class Character : MonoBehaviour
     }
     public Vector3 GetClosestTarget()//lấy target gần nhất
     {
-        Vector3 closestTarget = _listTarget[Constant.FRIST_INDEX].transform.position;
+        Vector3 closestTarget = _listTarget[0].transform.position;
         float closestDistance = Vector3.Distance(_trasformPlayer.position, closestTarget);// Distance Khoảng cách của 2 điểm vector
         for (int i = 0; i < _listTarget.Count; i++)
         {
@@ -67,7 +55,29 @@ public class Character : MonoBehaviour
         }
         return closestTarget;
     }
-    public void ChangAnim(string animName) // chuyen Animation 
+    public void OnEnableWeapon()//Tạo ra vũ khí trên tay
+    {
+        if (modelWeapon != null)
+        {
+            Destroy(modelWeapon);
+        }
+        if (_weaponType._weapon != null)
+        {
+            modelWeapon = Instantiate(_weaponType._weapon);
+            modelWeapon.transform.SetParent(_weaponTransform, false);
+        }
+    }
+    public void SetActiveWeapon() 
+    {
+        modelWeapon.SetActive(false);// ẩn vũ khí khi nhém
+        Invoke(nameof(IsHaveWeapon), 1f);//chờ 1s sau thì hiện lại
+    }
+
+    public void IsHaveWeapon()
+    {
+        modelWeapon.SetActive(true); //hiện lại vũ khí
+    }
+    public void ChangAnim(string animName) // chuyển Animation 
     {
         if (_currentAnim != animName)
         {
@@ -90,12 +100,23 @@ public class Character : MonoBehaviour
     public virtual void ChangeAccessory()
     {
     }
+    public void OnDead()
+    {
+        _isDead = true;
+    }
+
     public virtual void Attack()
     {
         ChangAnim(Constant.ANIM_ATTACK);
+        SetActiveWeapon();
+    }
+    public virtual void WeaponSpawnBot()
+    {
+        ChangAnim(Constant.EANIM_ATTACK);
+        SetActiveWeapon();
     }
     public virtual void Death()
     {
-        ChangAnim(Constant.ANIM_DEATH);
+        ChangAnim(Constant.ANIM_DEAD);
     }
 }
