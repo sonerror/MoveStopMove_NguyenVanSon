@@ -1,8 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+
 public class AttackState : IState<Bot>
 {
     public void OnEnter(Bot bot)
     {
-        bot.StartCoroutine(bot.ActionAttack());
+        bot.StartCoroutine(bot.DoAttack());
     }
     public void OnExecute(Bot bot)
     {
@@ -10,13 +15,9 @@ public class AttackState : IState<Bot>
         {
             bot.ChangeState(new DeadState());
         }
-        if(bot._listTarget.Count <= 0)
-        {
-            bot.ChangeState(new PatrolState());
-
-        }
     }
     public void OnExit(Bot bot)
     {
+
     }
 }

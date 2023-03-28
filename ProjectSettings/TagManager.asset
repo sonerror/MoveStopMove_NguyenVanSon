@@ -8,6 +8,7 @@ TagManager:
   - Block
   - Bot
   - Bullet
+  - Zone
   layers:
   - Default
   - TransparentFX

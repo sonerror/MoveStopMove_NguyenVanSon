@@ -5,48 +5,75 @@ using UnityEngine;
 public class Character : GameUnit
 {
     [SerializeField] public Animator _animator;
-    [SerializeField] public GameObject _target;
-    [SerializeField] public List<GameObject> _listTarget = new List<GameObject>();
-    [SerializeField] public Transform _trasformPlayer;
-    [SerializeField] public WeaponType _weaponType;
+    [SerializeField] GameObject mask;
+    [SerializeField] public List<Character> _listTarget = new List<Character>();
+    [SerializeField] public WeaponType _WeaponType;
     [SerializeField] public Transform _weaponTransform;
+    [SerializeField] private WeaponController _wreaponPrefab;
     private GameObject modelWeapon;
-    public float _rangeWeapon;
+
+    public const float ATT_RANGE = 5f;
+    public float _rangeAttack = 5f;
+
+
     string _currentAnim;
-    public bool _isDead;
+    //private Vector3 targetPoint;
+    public bool _isDead { get; set; }
+
 
     public virtual void OnInit()
     {
+        _isDead = false;
 
     }
-    private void Start()
+    public void OnEnableWeapon()
     {
-        OnInit();
+        if (modelWeapon != null)
+        {
+            Destroy(modelWeapon);
+        }
+        if (_WeaponType._weapon != null)
+        {
+            modelWeapon = Instantiate(_WeaponType._weapon);
+            modelWeapon.transform.SetParent(_weaponTransform, false);
+        }
     }
-    public Vector3 GetDirectionTaget()//lấy hướng của target
+
+    public void SetActiveWeapon()
+    {
+        modelWeapon.SetActive(false);
+        Invoke(nameof(IsHaveWeapon), 1f);
+    }
+
+    public void IsHaveWeapon()
+    {
+        modelWeapon.SetActive(true);
+    }
+    public Vector3 GetDirectionTaget()
     {
         Vector3 closestTarget = _listTarget[0].transform.position;
-        float closestDistance = Vector3.Distance(_trasformPlayer.position , closestTarget);
+        float closestDistance = Vector3.Distance(TF.position, closestTarget);
         for (int i = 0; i < _listTarget.Count; i++)
         {
-            float distance = Vector3.Distance(_trasformPlayer.position, _listTarget[i].transform.position);
+            float distance = Vector3.Distance(TF.position, _listTarget[i].transform.position);
             if (distance < closestDistance)
             {
                 closestTarget = _listTarget[i].transform.position;
                 closestDistance = distance;
             }
         }
-        Vector3 directionToTarget = closestTarget - _trasformPlayer.position;
+        Vector3 directionToTarget = closestTarget - TF.position;
         Vector3 normalizedDirection = directionToTarget.normalized;
         return normalizedDirection;
     }
-    public Vector3 GetClosestTarget()//lấy target gần nhất
+
+    public Vector3 GetClosestTarget()
     {
         Vector3 closestTarget = _listTarget[0].transform.position;
-        float closestDistance = Vector3.Distance(_trasformPlayer.position, closestTarget);// Distance Khoảng cách của 2 điểm vector
+        float closestDistance = Vector3.Distance(TF.position, closestTarget);
         for (int i = 0; i < _listTarget.Count; i++)
         {
-            float distance = Vector3.Distance(_trasformPlayer.position, _listTarget[i].transform.position);
+            float distance = Vector3.Distance(TF.position, _listTarget[i].transform.position);
             if (distance < closestDistance)
             {
                 closestTarget = _listTarget[i].transform.position;
@@ -55,29 +82,28 @@ public class Character : GameUnit
         }
         return closestTarget;
     }
-    public void OnEnableWeapon()//Tạo ra vũ khí trên tay
+
+    public virtual void OnAttack()
     {
-        if (modelWeapon != null)
-        {
-            Destroy(modelWeapon);
-        }
-        if (_weaponType._weapon != null)
-        {
-            modelWeapon = Instantiate(_weaponType._weapon);
-            modelWeapon.transform.SetParent(_weaponTransform, false);
-        }
-    }
-    public void SetActiveWeapon() 
-    {
-        modelWeapon.SetActive(false);// ẩn vũ khí khi nhém
-        Invoke(nameof(IsHaveWeapon), 1f);//chờ 1s sau thì hiện lại
+        LookEnemy();
+        ChangeAnim(Constant.ANIM_ATTACK);
+        SetActiveWeapon();
     }
 
-    public void IsHaveWeapon()
+    public void SetMask(bool active)
     {
-        modelWeapon.SetActive(true); //hiện lại vũ khí
+        mask.SetActive(active);
     }
-    public void ChangAnim(string animName) // chuyển Animation 
+
+    public virtual void AddTarget(Character character)
+    {
+        this._listTarget.Add(character);
+    }
+    public virtual void RemoveTarget(Character character)
+    {
+        this._listTarget.Remove(character);
+    }
+    public void ChangeAnim(string animName)
     {
         if (_currentAnim != animName)
         {
@@ -86,9 +112,30 @@ public class Character : GameUnit
             _animator.SetTrigger(_currentAnim);
         }
     }
+
+    public void LookEnemy()
+    {
+
+        if (_listTarget.Count > 0)
+        {
+            Vector3 direction = GetDirectionTaget();
+            direction.y = 0f;
+            TF.rotation = Quaternion.LookRotation(direction);
+        }
+    }
+
+    public virtual void InstantiateSpawnWeapon()
+    {
+        if (this._listTarget.Count > 0)
+        {
+            Vector3 taget = GetClosestTarget();
+            SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity).Oninit(this, taget);
+        }
+    }
+
     public void ResetAnim()
     {
-        ChangAnim("");
+        ChangeAnim("");
     }
     public virtual void ChangeWeapon()
     {
@@ -96,27 +143,10 @@ public class Character : GameUnit
     }
     public virtual void ChangdeSkin()
     {
-    }
-    public virtual void ChangeAccessory()
-    {
-    }
-    public void OnDead()
-    {
-        _isDead = true;
-    }
 
-    public virtual void Attack()
-    {
-        ChangAnim(Constant.ANIM_ATTACK);
-        SetActiveWeapon();
     }
-    public virtual void WeaponSpawnBot()
+    public virtual void OnDead()
     {
-        ChangAnim(Constant.EANIM_ATTACK);
-        SetActiveWeapon();
-    }
-    public virtual void Death()
-    {
-        ChangAnim(Constant.ANIM_DEAD);
+        ChangeAnim(Constant.ANIM_DEAD);
     }
 }

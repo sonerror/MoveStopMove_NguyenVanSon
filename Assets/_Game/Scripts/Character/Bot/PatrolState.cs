@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PatrolState : IState<Bot>
 {
@@ -7,15 +10,16 @@ public class PatrolState : IState<Bot>
     public void OnEnter(Bot bot)
     {
         time = 0f;
-        timer = 1f;
+        timer = 1.1f;
     }
+
     public void OnExecute(Bot bot)
     {
         bot.Moving();
         time += Time.deltaTime;
         if (bot._listTarget.Count > 0 && time > timer)
         {
-            bot.StopMoving();
+            bot.OnMoveStop();
             bot.ChangeState(new AttackState());
             time = 0f;
         }
@@ -24,8 +28,10 @@ public class PatrolState : IState<Bot>
             bot.ChangeState(new DeadState());
         }
     }
+
     public void OnExit(Bot bot)
     {
 
     }
+
 }

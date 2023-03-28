@@ -1,31 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity;
 using UnityEngine;
 
 public class DeadState : IState<Bot>
 {
     float timer = 0f;
     float time;
-    public void OnEnter(Bot bot)
+    public void OnEnter(Bot t)
     {
-        bot.StopMoving();
         timer = 2f;
-        bot.ChangAnim(Constant.EANIM_DEAD);
+        t.OnDead();
     }
 
-    public void OnExecute(Bot bot)
+    public void OnExecute(Bot t)
     {
-        time += Time.deltaTime;
         if (time > timer)
         {
-            SimplePool.Despawn(bot);
+
+            t._isDead = false;
+
+            SimplePool.Despawn(t);
             time = 0;
         }
+        time += Time.deltaTime;
+
     }
 
-
-    public void OnExit(Bot bot)
+    public void OnExit(Bot t)
     {
 
     }
+
 }

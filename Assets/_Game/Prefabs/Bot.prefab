@@ -192,8 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f53a66f6208214d878159a4bcfc196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 8874442863146810864}
-  _bot: {fileID: 8874442863146810864}
+  Character: {fileID: 8874442863146810864}
 --- !u!1 &1293731340032243407
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +405,7 @@ GameObject:
   - component: {fileID: 5261700741694261448}
   m_Layer: 0
   m_Name: Bot
-  m_TagString: Bot
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -443,7 +442,7 @@ Animator:
   m_GameObject: {fileID: 3409816302964389525}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
-  m_Controller: {fileID: 9100000, guid: c026e64f50ecc7a48885895a6b170289, type: 2}
+  m_Controller: {fileID: 9100000, guid: 27ba5ddf0adbbbf4db78c47a04def8d6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -518,15 +517,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 0
   _animator: {fileID: 8611801429306599932}
-  _target: {fileID: 0}
+  mask: {fileID: 1394557877879928706}
   _listTarget: []
-  _trasformPlayer: {fileID: 1804043513274418310}
-  _weaponType: {fileID: 11400000, guid: 70ad849d9a991f74d97257e4030b74d6, type: 2}
+  _WeaponType: {fileID: 11400000, guid: 71811e7757eaa854ba9a720c62c05996, type: 2}
   _weaponTransform: {fileID: 6928903753805269795}
-  _rangeWeapon: 5
-  _isDead: 0
-  _weapon: {fileID: 4791606894161264948, guid: ce02b2d2dd7e1934f8598533f76c6150, type: 3}
-  _lockTaget: {fileID: 1394557877879928706}
+  _wreaponPrefab: {fileID: 134773096036137998, guid: 9d1e10e37e5be054ab9bef83613d91ba, type: 3}
+  _rangeAttack: 5
+  agent: {fileID: 6517497893231734086}
+  range: 5
   _wanderRadius: 1000
   _wanderTimer: 3
 --- !u!23 &5261700741694261448

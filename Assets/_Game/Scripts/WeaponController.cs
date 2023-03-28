@@ -4,39 +4,56 @@ using UnityEngine;
 
 public class WeaponController : GameUnit
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Character _character;
+    [SerializeField] Vector3 currentPostion;
+    bool _isUpdatePosition = false;
     public void Oninit(Character character, Vector3 target)
     {
         this._character = character;
-        transform.forward = (target - transform.position).normalized;
+        TF.forward = (target - TF.position).normalized;
+    }
+
+    private void Start()
+    {
+
     }
     private void Update()
     {
-        float _direction = Vector3.Distance(transform.position, _character.transform.position);
-        if (_direction < _character._rangeWeapon)
+
+        if (!_isUpdatePosition)
         {
-            transform.forward = new Vector3(transform.forward.x, 0, transform.forward.z);
-            transform.Translate(transform.forward * moveSpeed * Time.deltaTime, Space.World);
+            currentPostion = _character.transform.position;
+            _isUpdatePosition = true;
+        }
+
+        if (Vector3.Distance(transform.position, currentPostion) < _character._rangeAttack)
+        {
+            TF.forward = new Vector3(TF.forward.x, 0, TF.forward.z);
+            TF.Translate(TF.forward * moveSpeed * Time.deltaTime, Space.World);
         }
         else
         {
+            _isUpdatePosition = false;
             OnDespawn();
         }
+
+
     }
+
     public void OnDespawn()
     {
         SimplePool.Despawn(this);
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Constant.TAG_BOT))
+        if (other.CompareTag(Constant.TAG_CHARACTER) && other.GetComponent<Character>() != _character)
         {
-            Debug.Log(other.gameObject.name);
             OnDespawn();
-            other.GetComponent<Character>().OnDead();
-            _character._listTarget.Remove(other.gameObject);
+            other.GetComponent<Character>()._isDead = true;
+            _character.RemoveTarget(other.GetComponent<Character>());
+            _isUpdatePosition = false;
         }
     }
 }

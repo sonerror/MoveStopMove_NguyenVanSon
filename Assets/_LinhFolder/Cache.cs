@@ -16,13 +16,13 @@
 //        return ihits[collider];
 //    }
 
-//    private static Dictionary<Collider, Character> characters = new Dictionary<Collider, Character>();
+//    private static Dictionary<Collider, _character> characters = new Dictionary<Collider, _character>();
 
-//    public static Character GetCharacter(Collider collider)
+//    public static _character GetCharacter(Collider collider)
 //    {
 //        if (!characters.ContainsKey(collider))
 //        {
-//            characters.Add(collider, collider.GetComponent<Character>());
+//            characters.Add(collider, collider.GetComponent<_character>());
 //        }
 
 //        return characters[collider];

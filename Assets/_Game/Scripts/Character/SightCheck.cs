@@ -4,29 +4,27 @@ using UnityEngine;
 
 public class SightCheck : MonoBehaviour
 {
-    public Character character;
-    public Bot _bot;
+    public Character Character;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Constant.TAG_BOT) || other.CompareTag(Constant.TAG_PLAYER))
+
+        if (other.CompareTag(Constant.TAG_CHARACTER))
         {
-            character._target = other.gameObject;
-            character._listTarget.Add(character._target);
-        }
-        if (other.CompareTag(Constant.TAG_PLAYER))
-        {
-            _bot._lockTaget.SetActive(true);
+            Character _target = other.GetComponent<Character>();
+            if (!_target._isDead)
+            {
+                Character.AddTarget(_target);
+            }
+
         }
     }
-    private void OnTriggerExit(Collider other )
+    private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag(Constant.TAG_BOT) || other.CompareTag(Constant.TAG_PLAYER))
+        if (other.CompareTag(Constant.TAG_CHARACTER))
         {
-            character._listTarget.Remove(other.gameObject);
-        }
-        if (other.CompareTag(Constant.TAG_PLAYER))
-        {
-            _bot._lockTaget.SetActive(false);
+            Character _target = other.GetComponent<Character>();
+            Character.RemoveTarget(_target);
         }
     }
 }
+

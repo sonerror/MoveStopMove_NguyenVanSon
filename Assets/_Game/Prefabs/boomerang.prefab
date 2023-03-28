@@ -11,11 +11,9 @@ GameObject:
   - component: {fileID: 4977774584523283519}
   - component: {fileID: 8267271949381882778}
   - component: {fileID: 6151837105114163024}
-  - component: {fileID: 5530472096796805248}
-  - component: {fileID: 4791606894161264948}
   m_Layer: 0
   m_Name: boomerang
-  m_TagString: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,32 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5530472096796805248
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5647315131047741061}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.046964135, y: 0.095465235, z: 0.0076899817}
-  m_Center: {x: 0.023739869, y: 0, z: 0}
---- !u!114 &4791606894161264948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5647315131047741061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7852a624731b1dc48bb4b7d93df479fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolType: 0
-  moveSpeed: 5
-  _character: {fileID: 0}
-  _currentPosition: {x: 0, y: 0, z: 0}
