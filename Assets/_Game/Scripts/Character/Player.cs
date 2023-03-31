@@ -42,12 +42,14 @@ public class Player : Character
         {
             ChangeAnim(Constant.ANIM_IDLE);
         }
+        //Move();
+        
     }
 
     void FixedUpdate()
     {
         Move();
-
+        //PlayerDead();
     }
 
     private void Move()
@@ -61,7 +63,6 @@ public class Player : Character
             transform.rotation = Quaternion.LookRotation(direction);
         }
     }
-
     public override void OnInit()
     {
         base.OnInit();
@@ -71,13 +72,11 @@ public class Player : Character
         base.OnAttack();
         StartCoroutine(DoSpawnWeapon());
     }
-
     public override void AddTarget(Character character)
     {
         base.AddTarget(character);
         character.SetMask(true);
     }
-
     public override void RemoveTarget(Character character)
     {
         base.RemoveTarget(character);
@@ -87,7 +86,7 @@ public class Player : Character
     {
 
         float timerate = 0.4f;
-        float _time_2 = 0; ;
+        float _time_2 = 0;
 
         while (_time_2 < timerate)
         {
@@ -98,18 +97,25 @@ public class Player : Character
                 goto Lable;
             }
         }
-        InstantiateSpawnWeapon();
+        SpawnWeapon();
     Lable:
         yield return null;
     }
-
-    public override void InstantiateSpawnWeapon()
+    public override void SpawnWeapon()
     {
-        base.InstantiateSpawnWeapon();
+        base.SpawnWeapon();
     }
     public override void OnDead()
     {
         base.OnDead();
-        //LevelManager._instance.RemoveTarget(this);
+        LevelManager.instance.RemoveTarget(this);
+    }
+    public void PlayerDead()
+    {
+        if(_isDead)
+        {
+            OnDead();
+            ResetAnim();
+        }
     }
 }

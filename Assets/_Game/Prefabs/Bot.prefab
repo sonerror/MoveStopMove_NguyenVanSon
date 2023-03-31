@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 6517497893231734086}
   - component: {fileID: 8874442863146810864}
   - component: {fileID: 5261700741694261448}
+  - component: {fileID: 1810322808754960050}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Character
@@ -515,7 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c73d7cf26195348bc45ba8210cbf66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 0
+  poolType: 1
   _animator: {fileID: 8611801429306599932}
   mask: {fileID: 1394557877879928706}
   _listTarget: []
@@ -568,6 +569,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1810322808754960050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3409816302964389525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 1, g: 0, b: 0, a: 1}
+  needBoxIndicator: 0
+  needArrowIndicator: 1
+  needDistanceText: 0
+  indicator: {fileID: 0}
 --- !u!1 &5598123333605024340
 GameObject:
   m_ObjectHideFlags: 0

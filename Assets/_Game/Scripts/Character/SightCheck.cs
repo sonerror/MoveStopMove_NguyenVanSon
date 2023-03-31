@@ -15,7 +15,6 @@ public class SightCheck : MonoBehaviour
             {
                 Character.AddTarget(_target);
             }
-
         }
     }
     private void OnTriggerExit(Collider other)
@@ -27,4 +26,3 @@ public class SightCheck : MonoBehaviour
         }
     }
 }
-

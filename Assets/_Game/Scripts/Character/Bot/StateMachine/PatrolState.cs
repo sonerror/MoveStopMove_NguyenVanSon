@@ -3,39 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class IdleState : IState<Bot>
+public class PatrolState : IState<Bot>
 {
     float timer;
-    float time = 0f;
-    float durationTimeAttack = 1.1f;
+    float time;
     public void OnEnter(Bot bot)
     {
-        bot.ChangeAnim(Constant.ANIM_IDLE);
+        time = 0f;
+        timer = 1.1f;
     }
 
     public void OnExecute(Bot bot)
     {
-        timer = Random.Range(3f, 6f);
-        if (time > timer && bot._listTarget.Count <= 0)
+        bot.Moving();
+        time += Time.deltaTime;
+        if (bot._listTarget.Count > 0 && time > timer)
         {
-            bot.ChangeState(new PatrolState());
-            time = 0f;
-        }
-        else if (bot._listTarget.Count > 0 && time > durationTimeAttack)
-        {
+            bot.OnMoveStop();
             bot.ChangeState(new AttackState());
             time = 0f;
         }
-        time += Time.deltaTime;
+        if(bot._listTarget.Count > 0)
+        {
+            bot.OnMoveStop();
+            bot.ChangeState(new AttackState());
+        }
         if (bot._isDead)
         {
             bot.ChangeState(new DeadState());
         }
     }
-
     public void OnExit(Bot bot)
     {
 
     }
-
 }

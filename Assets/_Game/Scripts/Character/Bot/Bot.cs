@@ -74,7 +74,7 @@ public class Bot : Character
     public override void OnAttack()
     {
         base.OnAttack();
-        InstantiateSpawnWeapon();
+        SpawnWeapon();
     }
     public void Moving()
     {
@@ -112,7 +112,6 @@ public class Bot : Character
         base.OnDead();
         OnMoveStop();
         SetMask(false);
-        //LevelManager._instance.RemoveTarget(this);
+        LevelManager.instance.RemoveTarget(this);
     }
-
 }

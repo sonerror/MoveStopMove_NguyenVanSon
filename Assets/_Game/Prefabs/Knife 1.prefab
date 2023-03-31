@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7852a624731b1dc48bb4b7d93df479fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 0
+  poolType: 2
   moveSpeed: 5
   _character: {fileID: 0}
   currentPostion: {x: 0, y: 0, z: 0}

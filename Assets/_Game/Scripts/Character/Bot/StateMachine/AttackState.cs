@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 
 public class AttackState : IState<Bot>
 {
+
     public void OnEnter(Bot bot)
     {
         bot.StartCoroutine(bot.DoAttack());
@@ -15,6 +16,7 @@ public class AttackState : IState<Bot>
         {
             bot.ChangeState(new DeadState());
         }
+
     }
     public void OnExit(Bot bot)
     {

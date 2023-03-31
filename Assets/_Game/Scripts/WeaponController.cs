@@ -13,21 +13,14 @@ public class WeaponController : GameUnit
         this._character = character;
         TF.forward = (target - TF.position).normalized;
     }
-
-    private void Start()
-    {
-
-    }
     private void Update()
     {
-
         if (!_isUpdatePosition)
         {
-            currentPostion = _character.transform.position;
+            currentPostion = _character.TF.position;
             _isUpdatePosition = true;
         }
-
-        if (Vector3.Distance(transform.position, currentPostion) < _character._rangeAttack)
+        if (Vector3.Distance(TF.position, currentPostion) < _character._rangeAttack)
         {
             TF.forward = new Vector3(TF.forward.x, 0, TF.forward.z);
             TF.Translate(TF.forward * moveSpeed * Time.deltaTime, Space.World);
@@ -37,8 +30,6 @@ public class WeaponController : GameUnit
             _isUpdatePosition = false;
             OnDespawn();
         }
-
-
     }
 
     public void OnDespawn()
@@ -52,6 +43,7 @@ public class WeaponController : GameUnit
         {
             OnDespawn();
             other.GetComponent<Character>()._isDead = true;
+            Debug.Log(other.gameObject);
             _character.RemoveTarget(other.GetComponent<Character>());
             _isUpdatePosition = false;
         }

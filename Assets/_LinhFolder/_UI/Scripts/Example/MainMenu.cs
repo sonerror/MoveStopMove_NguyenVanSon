@@ -6,8 +6,13 @@ namespace UIExample
 {
     public class MainMenu : UICanvas
     {
+        private void Start()
+        {
+            Time.timeScale= 0.0f;
+        }
         public void PlayButton()
         {
+            Time.timeScale = 1.0f;
             UIManager.Ins.OpenUI<GamePlay>();
             CloseDirectly();
         }

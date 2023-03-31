@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class PatrolState : IState<Bot>
+public class IdleState : IState<Bot>
 {
     float timer;
-    float time;
+    float time = 0f;
+    float durationTimeAttack = 1.1f;
     public void OnEnter(Bot bot)
     {
-        time = 0f;
-        timer = 1.1f;
+        bot.ChangeAnim(Constant.ANIM_IDLE);
     }
 
     public void OnExecute(Bot bot)
     {
-        bot.Moving();
         time += Time.deltaTime;
-        if (bot._listTarget.Count > 0 && time > timer)
+        timer = Random.Range(2f, 5f);
+        if (time > timer && bot._listTarget.Count <= 0)
         {
-            bot.OnMoveStop();
+            bot.ChangeState(new PatrolState());
+            time = 0f;
+        }
+        else if (bot._listTarget.Count > 0 && time > durationTimeAttack)
+        {
             bot.ChangeState(new AttackState());
             time = 0f;
         }

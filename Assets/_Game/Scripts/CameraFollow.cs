@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform _target;
     [SerializeField] private Vector3 _offset;
     [SerializeField] private float _moveSpeed = 5f;
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         _tf.position = Vector3.Lerp(_tf.position, _offset + _target.position, _moveSpeed * Time.deltaTime);
     }

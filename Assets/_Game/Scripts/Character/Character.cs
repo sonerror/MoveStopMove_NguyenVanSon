@@ -24,8 +24,7 @@ public class Character : GameUnit
     public virtual void OnInit()
     {
         _isDead = false;
-
-    }
+    }   
     public void OnEnableWeapon()
     {
         if (modelWeapon != null)
@@ -66,17 +65,16 @@ public class Character : GameUnit
         Vector3 normalizedDirection = directionToTarget.normalized;
         return normalizedDirection;
     }
-
     public Vector3 GetClosestTarget()
     {
-        Vector3 closestTarget = _listTarget[0].transform.position;
+        Vector3 closestTarget = _listTarget[0].TF.position;
         float closestDistance = Vector3.Distance(TF.position, closestTarget);
         for (int i = 0; i < _listTarget.Count; i++)
         {
-            float distance = Vector3.Distance(TF.position, _listTarget[i].transform.position);
+            float distance = Vector3.Distance(TF.position, _listTarget[i].TF.position);
             if (distance < closestDistance)
             {
-                closestTarget = _listTarget[i].transform.position;
+                closestTarget = _listTarget[i].TF.position;
                 closestDistance = distance;
             }
         }
@@ -85,7 +83,7 @@ public class Character : GameUnit
 
     public virtual void OnAttack()
     {
-        LookEnemy();
+        LookBot();
         ChangeAnim(Constant.ANIM_ATTACK);
         SetActiveWeapon();
     }
@@ -98,6 +96,7 @@ public class Character : GameUnit
     public virtual void AddTarget(Character character)
     {
         this._listTarget.Add(character);
+
     }
     public virtual void RemoveTarget(Character character)
     {
@@ -113,18 +112,18 @@ public class Character : GameUnit
         }
     }
 
-    public void LookEnemy()
+    public void LookBot()
     {
-
         if (_listTarget.Count > 0)
         {
             Vector3 direction = GetDirectionTaget();
             direction.y = 0f;
             TF.rotation = Quaternion.LookRotation(direction);
+
         }
     }
 
-    public virtual void InstantiateSpawnWeapon()
+    public virtual void SpawnWeapon()
     {
         if (this._listTarget.Count > 0)
         {
@@ -132,7 +131,10 @@ public class Character : GameUnit
             SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity).Oninit(this, taget);
         }
     }
-
+    public virtual void OnDead()
+    {
+        ChangeAnim(Constant.ANIM_DEAD);
+    }
     public void ResetAnim()
     {
         ChangeAnim("");
@@ -144,9 +146,5 @@ public class Character : GameUnit
     public virtual void ChangdeSkin()
     {
 
-    }
-    public virtual void OnDead()
-    {
-        ChangeAnim(Constant.ANIM_DEAD);
     }
 }
