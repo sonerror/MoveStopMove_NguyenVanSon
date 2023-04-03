@@ -7,6 +7,7 @@ public class Player : Character
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _rotateSpeed;
+    public static Player Instance { get; private set; }
 
     public bool _isMove;
     public bool _isCanAttack;
@@ -54,7 +55,7 @@ public class Player : Character
 
     private void Move()
     {
-        if (Input.GetMouseButton(0) && JoystickControl.direct != Vector3.zero)
+        if (Input.GetMouseButton(0) && JoystickControl.direct.sqrMagnitude > 0.001f)
         {
             _isMove = true;
             _rb.MovePosition(_rb.position + JoystickControl.direct * _moveSpeed * Time.fixedDeltaTime);
@@ -62,6 +63,11 @@ public class Player : Character
             Vector3 direction = Vector3.RotateTowards(transform.forward, JoystickControl.direct, _rotateSpeed * Time.deltaTime, 0.0f);
             transform.rotation = Quaternion.LookRotation(direction);
         }
+    }
+    public void StopMoving()
+    {
+        _moveSpeed = 0f;
+        _isMove = false;
     }
     public override void OnInit()
     {
@@ -114,6 +120,7 @@ public class Player : Character
     {
         if(_isDead)
         {
+            _isMove= false;
             OnDead();
             ResetAnim();
         }

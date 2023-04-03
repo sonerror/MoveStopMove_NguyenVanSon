@@ -4,13 +4,63 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private Transform _tf;
-    [SerializeField] private Transform _target;
-    [SerializeField] private Vector3 _offset;
-    [SerializeField] private float _moveSpeed = 5f;
-    private void FixedUpdate()
+    [System.Serializable]
+    public struct CameraData
     {
-        _tf.position = Vector3.Lerp(_tf.position, _offset + _target.position, _moveSpeed * Time.deltaTime);
+        public Vector3 _offSetStruct;
+        public Vector3 _eulerAnglesStruct;
     }
+    public enum State
+    {
+        MainMenu = 0,
+        GamePlay = 1,
+    }
+    [SerializeField] private float _lerpTime = 10f;
+    [SerializeField] private CameraData _mainMenuData;
+    [SerializeField] private CameraData _gamePlayData;
 
+    [SerializeField] private Player _player;
+    private State _state;
+    private Vector3 _targetOffset;
+    private Vector3 _offset;
+    private Vector3 _targetEulerAngles;
+    private Vector3 _eulerAngles;
+    private void Start()
+    {
+        Debug.Log((State)0);
+        ChangeState(State.MainMenu);
+        _offset = _targetOffset;
+        _eulerAngles= _targetEulerAngles;
+    }
+    private void LateUpdate()
+    {
+        if(_player == null )
+        {
+            _player = Player.Instance;
+        }
+        if(_state == State.GamePlay && _targetOffset != _gamePlayData._offSetStruct * _player.GetMultiplier())
+        {
+            _targetOffset= _gamePlayData._offSetStruct * _player.GetMultiplier();
+        }
+        _offset = Vector3.Lerp(_offset, _targetOffset, _lerpTime*Time.deltaTime);
+        transform.position = _player.transform.position + _offset ;
+        _eulerAngles = Vector3.Lerp(_eulerAngles,_targetEulerAngles,_lerpTime*Time.deltaTime);
+        transform.rotation = Quaternion.Euler(_eulerAngles);
+    }
+    public void ChangeState(State _state)
+    {
+        this._state = _state;
+        switch (this._state)
+        {
+            case (State)0:
+           
+                _targetOffset = _mainMenuData._offSetStruct;
+                _targetEulerAngles = _mainMenuData._eulerAnglesStruct;
+                break;
+            case State.GamePlay:
+                _targetOffset = _gamePlayData._offSetStruct;
+                _targetEulerAngles = _gamePlayData._eulerAnglesStruct;
+                break;
+        }
+    }
 }

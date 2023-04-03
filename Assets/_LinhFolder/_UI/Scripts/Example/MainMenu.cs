@@ -12,6 +12,7 @@ namespace UIExample
         }
         public void PlayButton()
         {
+           GameManager.Ins.StartGame();
             Time.timeScale = 1.0f;
             UIManager.Ins.OpenUI<GamePlay>();
             CloseDirectly();

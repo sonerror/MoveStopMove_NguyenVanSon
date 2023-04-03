@@ -17,6 +17,8 @@ public class Character : GameUnit
 
 
     string _currentAnim;
+    private float multiplier = 1.0f;
+
     //private Vector3 targetPoint;
     public bool _isDead { get; set; }
 
@@ -139,6 +141,11 @@ public class Character : GameUnit
     {
         ChangeAnim("");
     }
+    public float GetMultiplier()
+    {
+        return multiplier;
+    }
+
     public virtual void ChangeWeapon()
     {
 
