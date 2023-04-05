@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,12 +13,11 @@ public class Character : GameUnit
     [SerializeField] private WeaponController _wreaponPrefab;
     private GameObject modelWeapon;
 
-    public const float ATT_RANGE = 5f;
     public float _rangeAttack = 5f;
 
 
     string _currentAnim;
-    private float multiplier = 1.0f;
+    private float _multiplier = 1.0f;
 
     //private Vector3 targetPoint;
     public bool _isDead { get; set; }
@@ -113,7 +113,6 @@ public class Character : GameUnit
             _animator.SetTrigger(_currentAnim);
         }
     }
-
     public void LookBot()
     {
         if (_listTarget.Count > 0)
@@ -124,13 +123,12 @@ public class Character : GameUnit
 
         }
     }
-
     public virtual void SpawnWeapon()
     {
         if (this._listTarget.Count > 0)
         {
             Vector3 taget = GetClosestTarget();
-            SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity).Oninit(this, taget);
+            SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity).WeaponInit(this, taget);
         }
     }
     public virtual void OnDead()
@@ -143,9 +141,8 @@ public class Character : GameUnit
     }
     public float GetMultiplier()
     {
-        return multiplier;
+        return _multiplier;
     }
-
     public virtual void ChangeWeapon()
     {
 

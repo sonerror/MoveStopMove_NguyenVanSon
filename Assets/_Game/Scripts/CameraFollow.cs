@@ -27,7 +27,6 @@ public class CameraFollow : MonoBehaviour
     private Vector3 _eulerAngles;
     private void Start()
     {
-        Debug.Log((State)0);
         ChangeState(State.MainMenu);
         _offset = _targetOffset;
         _eulerAngles= _targetEulerAngles;

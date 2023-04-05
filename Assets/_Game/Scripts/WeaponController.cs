@@ -5,16 +5,17 @@ using UnityEngine;
 public class WeaponController : GameUnit
 {
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private Character _character;
-    [SerializeField] Vector3 currentPostion;
+    private Character _character;
+    Vector3 currentPostion;
     bool _isUpdatePosition = false;
-    public void Oninit(Character character, Vector3 target)
+    public void WeaponInit(Character character, Vector3 target)
     {
         this._character = character;
         TF.forward = (target - TF.position).normalized;
     }
     private void Update()
     {
+
         if (!_isUpdatePosition)
         {
             currentPostion = _character.TF.position;
@@ -43,7 +44,6 @@ public class WeaponController : GameUnit
         {
             OnDespawn();
             other.GetComponent<Character>()._isDead = true;
-            Debug.Log(other.gameObject);
             _character.RemoveTarget(other.GetComponent<Character>());
             _isUpdatePosition = false;
         }

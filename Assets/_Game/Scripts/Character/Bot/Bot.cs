@@ -12,7 +12,7 @@ public class Bot : Character
     public float _wanderRadius;
     public float _wanderTimer;
     Vector3 nextPoint;
-
+    public bool _isCanMove;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -113,5 +113,6 @@ public class Bot : Character
         OnMoveStop();
         SetMask(false);
         LevelManager.instance.RemoveTarget(this);
+
     }
 }

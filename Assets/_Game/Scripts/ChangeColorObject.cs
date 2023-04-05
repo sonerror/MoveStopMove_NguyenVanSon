@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class ChangeColorObject : MonoBehaviour
 {
-    [SerializeField] private Transform _tfPlayer;
+    [SerializeField] private Transform _tfZonePlayer;
     private Material _material;
     private Color _color;
     private Color _transparentColor;
     private void Start()
     {
-        
         _material = GetComponent<Renderer>().material;
         _color = _material.color;
         _transparentColor = _material.color;
@@ -18,20 +17,19 @@ public class ChangeColorObject : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.transform == _tfPlayer)
+        if(other.gameObject.transform == _tfZonePlayer)
         {
             _material.color = Color.Lerp(_color, _transparentColor, 1f);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-
-        if(other.gameObject.transform == _tfPlayer)
+        if(other.gameObject.transform == _tfZonePlayer)
         {
-            ChangeColorNew();
+            ChangeColorOld();
         }
     }
-    private void ChangeColorNew()
+    private void ChangeColorOld()
     {
         _material.color = Color.Lerp(_transparentColor, _color, 1f);
     }
