@@ -152,7 +152,7 @@ public enum PoolType
     None,
 
     Bot,
-
+    BotName,
     W_Hammer_1,
     W_Hammer_2,
     W_Hammer_3,

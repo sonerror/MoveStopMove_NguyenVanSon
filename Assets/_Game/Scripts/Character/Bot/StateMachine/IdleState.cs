@@ -15,11 +15,11 @@ public class IdleState : IState<Bot>
 
     public void OnExecute(Bot bot)
     {
+        timer = Random.Range(2.1f, 5.1f);
         time += Time.deltaTime;
-        timer = Random.Range(2f, 5f);
         if(bot._isCanMove)
         {
-            if (time > timer && bot._listTarget.Count <= 0)
+            if (time >= timer && bot._listTarget.Count <= 0)
             {
                 bot.ChangeState(new PatrolState());
                 time = 0f;

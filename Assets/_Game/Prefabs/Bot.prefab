@@ -523,7 +523,10 @@ MonoBehaviour:
   _WeaponType: {fileID: 11400000, guid: 71811e7757eaa854ba9a720c62c05996, type: 2}
   _weaponTransform: {fileID: 6928903753805269795}
   _wreaponPrefab: {fileID: 134773096036137998, guid: 9d1e10e37e5be054ab9bef83613d91ba, type: 3}
+  _infoCharacter: {fileID: 5998995875891852543, guid: 31ea43d981ff5b840821e63e841f9b27, type: 3}
+  _infoChar: {fileID: 0}
   _rangeAttack: 5
+  Canvas: {fileID: 0}
   agent: {fileID: 6517497893231734086}
   range: 5
   _wanderRadius: 1000

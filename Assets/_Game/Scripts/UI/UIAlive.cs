@@ -10,6 +10,6 @@ public class UIAlive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        aliveNumber.text =  LevelManager.instance.alive.ToString();
+        aliveNumber.text = LevelManager.instance.alive.ToString();
     }
 }

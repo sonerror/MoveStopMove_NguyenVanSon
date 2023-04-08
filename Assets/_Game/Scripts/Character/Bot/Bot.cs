@@ -13,6 +13,7 @@ public class Bot : Character
     public float _wanderTimer;
     Vector3 nextPoint;
     public bool _isCanMove;
+    public GameObject botName;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();

@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class DeadState : IState<Bot>
 {
-    float timer = 0f;
+    float timer;
     float time;
     public void OnEnter(Bot bot)
     {
-        timer = 2f;
+        time = 0.1f;
+        timer = 3.1f;
         bot.OnDead();
     }
 
     public void OnExecute(Bot bot)
     {
+        time += Time.deltaTime;
         if (time > timer)
         {
 
@@ -26,11 +28,10 @@ public class DeadState : IState<Bot>
             {
                 BotManager.instance.StartCoroutine(BotManager.instance.CoroutineSpawnBot());
             }
-
+            BotManager.instance.DespawnNameBot(bot);
             BotManager.instance.bots.Remove(bot);
             time = 0;
         }
-        time += Time.deltaTime;
     }
     public void OnExit(Bot bot)
     {

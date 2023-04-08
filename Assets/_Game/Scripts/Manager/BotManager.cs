@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,10 +13,7 @@ public class BotManager : GameUnit
 
     public int totalBot;
     public int spawnNumberBot;
-    private int ra = 100;
-
-    public float pointX;
-    public float pointZ;
+    private int _radius = 100;
     public float minDistance;
 
     private void Awake()
@@ -30,7 +28,7 @@ public class BotManager : GameUnit
     }
     private void Oninit()
     {
-       Vector3 newPos = RandomNavSphere(transform.position, ra, -1);
+       Vector3 newPos = RandomNavSphere(transform.position, _radius, -1);
         for (int i = 0; i < totalBot; i++)
         {
             Bot bot = SimplePool.Spawn<Bot>(_botPrefab,newPos , Quaternion.identity);
@@ -45,7 +43,7 @@ public class BotManager : GameUnit
     }
     public Bot GetBotFormPool()
     {
-        Vector3 newPos = RandomNavSphere(transform.position, ra, -1);
+        Vector3 newPos = RandomNavSphere(transform.position, _radius, -1);
         for (int i = 0; i < bots.Count; i++)
         {
             if (!bots[i].gameObject.activeInHierarchy)
@@ -61,15 +59,19 @@ public class BotManager : GameUnit
     public void SpawnBot()
     {
         Bot bot = GetBotFormPool();
-        //bot.transform.position = RandomPosition();
         if (CheckRamdomPosition(bot))
         {
             bot.gameObject.SetActive(true);
-
             LevelManager.instance.characterList.Add(bot);
         }
+        GameObject pooledBotName = BotNamePool.instance.GetObject();
+        pooledBotName.GetComponent<CanvasNameOnUI>().SetTargetTransform(bot.transform);
+        bot.botName = pooledBotName;
     }
-
+    public void DespawnNameBot(Bot bot)
+    { 
+        BotNamePool.instance.ReturnToPool(bot.botName);
+    }
     public IEnumerator CoroutineSpawnBot()
     {
         yield return new WaitForSeconds(2f);
@@ -81,7 +83,7 @@ public class BotManager : GameUnit
         bool validPosition = false;
         while (!validPosition)
         {
-            character.transform.position = RandomNavSphere(character.transform.position, ra, -1);
+            character.transform.position = RandomNavSphere(character.transform.position, _radius, -1);
             //character.transform.position = new Vector3(Random.Range(-pointX, pointX), 0, Random.Range(-pointZ, pointZ));
             validPosition = true;
             foreach (Character otherCharacter in LevelManager.instance.characterList)

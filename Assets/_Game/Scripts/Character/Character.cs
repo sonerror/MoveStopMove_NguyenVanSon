@@ -128,7 +128,8 @@ public class Character : GameUnit
         if (this._listTarget.Count > 0)
         {
             Vector3 taget = GetClosestTarget();
-            SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity).WeaponInit(this, taget);
+            WeaponController weapon =  SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity);
+            weapon.WeaponInit(this, taget);
         }
     }
     public virtual void OnDead()
