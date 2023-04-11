@@ -96,7 +96,6 @@ public class Bot : Character
     public void OnMoveStop()
     {
         agent.enabled = false;
-        //ChangeAnim(Constant.ANIM_IDLE);
     }
     bool IsDestination() => Vector3.Distance(transform.position, nextPoint) - Mathf.Abs(transform.position.y - nextPoint.y) < 0.1f;
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)

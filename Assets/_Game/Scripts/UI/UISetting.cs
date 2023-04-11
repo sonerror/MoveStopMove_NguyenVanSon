@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UIExample;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class UILoss : UICanvas
+public class UISetting : UICanvas
 {
-
-    public void MenuButton()
+    void Start()
+    {
+        Time.timeScale = 0f;
+    }
+    public void ButtonHome()
     {
         UIManager.Ins.OpenUI<MainMenu>();
-        this.CloseDirectly();
-        ResetGame();
+        CloseDirectly();
     }
-    public void ResetGame()
+    public void ButtonContinue()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        CloseDirectly();
+        Time.timeScale = 1f;
+        UIManager.Ins.OpenUI<GamePlay>();
+
     }
     public void QuitGame()
     {
@@ -26,4 +30,5 @@ public class UILoss : UICanvas
         Application.Quit();
 #endif
     }
+
 }

@@ -20,7 +20,7 @@ namespace UIExample
 
         public void SettingButton()
         {
-            UIManager.Ins.OpenUI<Setting>();
+            UIManager.Ins.OpenUI<UISetting>();
         }
     }
 }

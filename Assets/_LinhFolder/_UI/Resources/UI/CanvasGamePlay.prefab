@@ -30,7 +30,7 @@ Transform:
   - {fileID: 3182782410488178640}
   - {fileID: 2211641737386447101}
   m_Father: {fileID: 2696998164469505248}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2696998164469505260
 GameObject:
@@ -64,8 +64,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4251578480216604568}
-  - {fileID: 8423842452224459612}
   - {fileID: 3313356555051607360}
+  - {fileID: 8423842452224459612}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -346,12 +346,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7969964333648417063}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2696998164469505248}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -439,7 +439,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 126245428464553169}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2950242511486510998}
+        m_TargetAssemblyTypeName: UIExample.GamePlay, Assembly-CSharp
+        m_MethodName: SettingButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2696998164682243183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -453,7 +465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2192423507937682780, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.00012207
       objectReference: {fileID: 0}
     - target: {fileID: 2192423507937682780, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -583,6 +595,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c27be02588a4bfe4e99b67ec5e6ddb6a, type: 3}
+    - target: {fileID: 2580517366570509184, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -119.2827
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580517366570509184, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -59.6414
+      objectReference: {fileID: 0}
     - target: {fileID: 6804370372523763683, guid: 36a44ddad5df99945a1c494532d50c50, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
