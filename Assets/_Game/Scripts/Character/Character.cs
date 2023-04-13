@@ -8,36 +8,47 @@ public class Character : GameUnit
     [SerializeField] public Animator _animator;
     [SerializeField] GameObject mask;
     [SerializeField] public List<Character> _listTarget = new List<Character>();
-    [SerializeField] public WeaponType _WeaponType;
+
+    public WeaponType[] _weaponTypes;
+    [SerializeField] public WeaponType _weaponType;
     [SerializeField] public Transform _weaponTransform;
-    [SerializeField] private WeaponController _wreaponPrefab;
+    [SerializeField] public int _indexWeapon = 0;
     private GameObject modelWeapon;
 
-    public float _rangeAttack = 5f;
+    public Material[] _pantTypes;
+    public GameObject _modelPant;
 
+    public GameObject[] _hatTypes;
+    public GameObject _hatType;
+    public Transform _hatTransform;
+
+    public float _rangeAttack = 5f;
+    public const float ATT_RANGE = 5f;
 
     string _currentAnim;
     private float _multiplier = 1.0f;
 
-    //private Vector3 targetPoint;
     public bool _isDead { get; set; }
 
 
     public virtual void OnInit()
     {
         _isDead = false;
-    }   
-    public void OnEnableWeapon()
+        ChangePant();
+       //ChangeAccessory();
+    }
+    public void OnEnableWeapon(WeaponType weaponType)
     {
         if (modelWeapon != null)
         {
             Destroy(modelWeapon);
         }
-        if (_WeaponType._weapon != null)
+        if (weaponType._weapon != null)
         {
-            modelWeapon = Instantiate(_WeaponType._weapon);
+            modelWeapon = Instantiate(weaponType._weapon);
             modelWeapon.transform.SetParent(_weaponTransform, false);
         }
+
     }
 
     public void SetActiveWeapon()
@@ -125,11 +136,19 @@ public class Character : GameUnit
     }
     public virtual void SpawnWeapon()
     {
+        Vector3 target = GetClosestTarget();
         if (this._listTarget.Count > 0)
         {
-            Vector3 taget = GetClosestTarget();
-            WeaponController weapon =  SimplePool.Spawn<WeaponController>(_wreaponPrefab, _weaponTransform.position, Quaternion.identity);
-            weapon.WeaponInit(this, taget);
+            if (_weaponType._typeSpawnWeapon == TypeSpawnWeapon.Boomerang)
+            {
+                WeaponController weapon = SimplePool.Spawn<WeaponBoommerang>(_weaponType._weaponPrefab, _weaponTransform.position, Quaternion.identity);
+                weapon.WeaponInit(this, target);
+            }
+            else if (_weaponType._typeSpawnWeapon == TypeSpawnWeapon.FowardWeapon || _weaponType._typeSpawnWeapon == TypeSpawnWeapon.RotateWeapon)
+            {
+                WeaponController weapon = SimplePool.Spawn<WeaponForward>(_weaponType._weaponPrefab, _weaponTransform.position, Quaternion.identity);
+                weapon.WeaponInit(this, target);
+            }
         }
     }
     public virtual void OnDead()
@@ -144,7 +163,25 @@ public class Character : GameUnit
     {
         return _multiplier;
     }
-    public virtual void ChangeWeapon()
+    public virtual void ChangeAccessory()
+    {
+        int index;
+        index = UnityEngine.Random.Range(0, _pantTypes.Length);
+        if (_hatType != null)
+        {
+            Destroy(_hatType);
+        }
+        _hatType = Instantiate(_hatTypes[_hatTypes.Length - 1]);
+        _hatType.transform.SetParent(_hatTransform, false);
+    }
+
+    public virtual void ChangePant()
+    {
+        int index;
+        index = UnityEngine.Random.Range(0, _pantTypes.Length);
+        _modelPant.transform.GetComponent<Renderer>().material = _pantTypes[index];
+    }
+    public virtual void ChangeWeapon(int index)
     {
 
     }

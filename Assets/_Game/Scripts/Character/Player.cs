@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UIExample;
 using UnityEngine;
@@ -16,31 +17,36 @@ public class Player : Character
     private float _timeRate = 1f;
     private float _time = 0f;
 
-    [SerializeField] private bool move = true;
+    public bool move = true;
 
     void Start()
     {
-        OnEnableWeapon();
+        OnEnableWeapon(_weaponType);
         _isDead = false;
         ChangeAnim(Constant.ANIM_IDLE);
     }
+
     private void Update()
     {
         if (this._isDead)
         {
-            OnDead();
-
+            this.OnDead();
         }
         _time += Time.deltaTime;
         if (!this._isDead)
         {
+            if (LevelManager.instance.alive == 1)
+            {
+                ChangeAnim(Constant.ANIM_VICTORY);
+                return;
+            }
             if (Input.GetMouseButtonUp(0))
             {
                 _isMove = false;
+                _time = 1.1f;
             }
             else if (!_isMove && _listTarget.Count > 0)
             {
-
                 if (_time >= _timeRate)
                 {
                     OnAttack();
@@ -52,10 +58,18 @@ public class Player : Character
             {
                 ChangeAnim(Constant.ANIM_IDLE);
             }
+
+            /*if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                _indexWeapon++;
+                if (_indexWeapon == _weaponTypes.Length)
+                {
+                    _indexWeapon = 0;
+                }
+                ChangeWeapon(_indexWeapon);
+            }*/
+
         }
-
-        //Move();
-
     }
 
     void FixedUpdate()
@@ -125,6 +139,12 @@ public class Player : Character
     public override void SpawnWeapon()
     {
         base.SpawnWeapon();
+    }
+    public override void ChangeWeapon(int index)
+    {
+        base.ChangeWeapon(index);
+        _weaponType = _weaponTypes[index];
+        OnEnableWeapon(_weaponType);
     }
     public override void OnDead()
     {

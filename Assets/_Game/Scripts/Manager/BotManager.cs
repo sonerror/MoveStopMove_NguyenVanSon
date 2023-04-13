@@ -28,15 +28,20 @@ public class BotManager : GameUnit
     }
     private void Oninit()
     {
-       Vector3 newPos = RandomNavSphere(transform.position, _radius, -1);
+        LevelManager.instance.characterList.Add(player);
+        player.OnInit();
         for (int i = 0; i < totalBot; i++)
         {
-            Bot bot = SimplePool.Spawn<Bot>(_botPrefab,newPos , Quaternion.identity);
+            Bot bot = SimplePool.Spawn<Bot>(_botPrefab, Vector3.zero, Quaternion.identity);
             bot.gameObject.SetActive(false);
             bots.Add(bot);
         }
 
-        for (int i = 0; i < spawnNumberBot; i++)
+        SpawnRealBot(spawnNumberBot);
+    }
+    public void SpawnRealBot(int realBotSpawn)
+    {
+        for (int i = 0; i < realBotSpawn; i++)
         {
             SpawnBot();
         }
@@ -59,6 +64,7 @@ public class BotManager : GameUnit
     public void SpawnBot()
     {
         Bot bot = GetBotFormPool();
+        bot.OnInit();
         if (CheckRamdomPosition(bot))
         {
             bot.gameObject.SetActive(true);

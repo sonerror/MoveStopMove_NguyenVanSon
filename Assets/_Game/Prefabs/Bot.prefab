@@ -83,6 +83,36 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.022025019, y: -0.20364892, z: 0.06559235}
     m_Extent: {x: 0.37928566, y: 0.32483852, z: 0.3806656}
   m_DirtyAABB: 0
+--- !u!1 &571162046283989360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7058934047987722975}
+  m_Layer: 0
+  m_Name: head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7058934047987722975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571162046283989360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8434812640283976305}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &716405811279571062
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,18 +550,45 @@ MonoBehaviour:
   _animator: {fileID: 8611801429306599932}
   mask: {fileID: 1394557877879928706}
   _listTarget: []
-  _WeaponType: {fileID: 11400000, guid: 71811e7757eaa854ba9a720c62c05996, type: 2}
+  _weaponTypes:
+  - {fileID: 11400000, guid: 5480613343432644cbe0ce79b5a4dbb1, type: 2}
+  - {fileID: 11400000, guid: 73964e3dd09825a41aa330367b3f70ed, type: 2}
+  - {fileID: 11400000, guid: e64ff3139fc549e4098a24f45c5a78e2, type: 2}
+  - {fileID: 11400000, guid: fa747323fe01f3f4087e8a8bba0af1a2, type: 2}
+  - {fileID: 11400000, guid: 89d1bb5a4c9369c40a698e61e009c894, type: 2}
+  _weaponType: {fileID: 11400000, guid: 73964e3dd09825a41aa330367b3f70ed, type: 2}
   _weaponTransform: {fileID: 6928903753805269795}
-  _wreaponPrefab: {fileID: 134773096036137998, guid: 9d1e10e37e5be054ab9bef83613d91ba, type: 3}
-  _infoCharacter: {fileID: 5998995875891852543, guid: 31ea43d981ff5b840821e63e841f9b27, type: 3}
-  _infoChar: {fileID: 0}
+  _indexWeapon: 0
+  _pantTypes:
+  - {fileID: 2100000, guid: 9c9d239ac585d4e4cb62fde5cc8a811a, type: 2}
+  - {fileID: 2100000, guid: a0d8ffcb66938b448bf52382bfe14caf, type: 2}
+  - {fileID: 2100000, guid: da857808eaa551d4cbe236be2e034416, type: 2}
+  - {fileID: 2100000, guid: e5421929f57ab694ba8ec1e52848616e, type: 2}
+  - {fileID: 2100000, guid: 6eb925d2fac49af4eb27177efebaa271, type: 2}
+  - {fileID: 2100000, guid: 3e8d152e0a8225b408ee3fd378e7cddf, type: 2}
+  - {fileID: 2100000, guid: 6e448cabf9ed32f438787bb00fb048a9, type: 2}
+  - {fileID: 2100000, guid: d5a0a4ab3c771c54f8ed5453907e04d9, type: 2}
+  - {fileID: 2100000, guid: 67e870cdbb84e4c478c9d443642cb7f2, type: 2}
+  _modelPant: {fileID: 551460485827546610}
+  _hatTypes:
+  - {fileID: -927199367670048503, guid: b535a5d9e925da743af04915aebb5351, type: 3}
+  - {fileID: -927199367670048503, guid: 3f3354853558ea744a2797089733af2f, type: 3}
+  - {fileID: -927199367670048503, guid: c7b1e814e40b3584db8379f612c1578e, type: 3}
+  - {fileID: -927199367670048503, guid: 04aebbebac684444abecd94a90d29bec, type: 3}
+  - {fileID: -927199367670048503, guid: 7d22ba4646139ed499c8d6f6cba73b3e, type: 3}
+  - {fileID: -927199367670048503, guid: 4a583de8669a1a4488b2564cbb6edbd8, type: 3}
+  - {fileID: -927199367670048503, guid: 631dc824c667e2141af72f923cc34829, type: 3}
+  - {fileID: -927199367670048503, guid: 7143f17d4a7fe66449b69bfd7b67c441, type: 3}
+  - {fileID: -927199367670048503, guid: 1cbe8dd584db7ef4cb4e664ac67b61e6, type: 3}
+  _hatType: {fileID: 0}
+  _hatTransform: {fileID: 7058934047987722975}
   _rangeAttack: 5
-  Canvas: {fileID: 0}
   agent: {fileID: 6517497893231734086}
   range: 5
   _wanderRadius: 1000
   _wanderTimer: 3
   _isCanMove: 0
+  botName: {fileID: 0}
 --- !u!23 &5261700741694261448
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -707,7 +764,8 @@ Transform:
   m_LocalRotation: {x: 0.026229963, y: 0.017273054, z: -0.0060140416, w: 0.99948865}
   m_LocalPosition: {x: 0.003857644, y: 1.632053, z: 0.1371321}
   m_LocalScale: {x: 0.99999976, y: 0.9999994, z: 0.9999995}
-  m_Children: []
+  m_Children:
+  - {fileID: 7058934047987722975}
   m_Father: {fileID: 1804043513274418310}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

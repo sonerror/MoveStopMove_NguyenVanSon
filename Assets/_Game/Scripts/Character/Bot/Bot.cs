@@ -8,20 +8,19 @@ public class Bot : Character
     private IState<Bot> currentState;
     private float _timer;
     public NavMeshAgent agent;
-    public float range; 
+    public float range;
     public float _wanderRadius;
     public float _wanderTimer;
     Vector3 nextPoint;
     public bool _isCanMove;
     public GameObject botName;
-    private void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        ChangeState(new IdleState());
-        OnEnableWeapon();
-        OnInit();
-    }
 
+    /*    private void Start()
+        {
+            agent = GetComponent<NavMeshAgent>();
+            ChangeState(new IdleState());
+            ChangeWeapon(_indexWeapon);
+        }*/
     // Update is called once per frame
     void Update()
     {
@@ -30,9 +29,24 @@ public class Bot : Character
             currentState.OnExecute(this);
         }
     }
+
     public override void OnInit()
     {
         base.OnInit();
+        agent = GetComponent<NavMeshAgent>();
+        ChangeState(new IdleState());
+        ChangeWeapon(_indexWeapon);
+    }
+    public override void ChangeWeapon(int index)
+    {
+        Debug.Log(_weaponType._typeSpawnWeapon);
+        base.ChangeWeapon(index);
+        index = Random.Range(0, _weaponTypes.Length);
+        Debug.Log(_weaponTypes.Length);
+        _weaponType = _weaponTypes[index];
+        OnEnableWeapon(_weaponType);
+        Debug.Log("loại vũ khí");
+
     }
     public void ChangeState(IState<Bot> state)
     {
@@ -53,7 +67,7 @@ public class Bot : Character
     {
         OnAttack();
         float time = 0;
-        float timer = 1.1f;
+        float timer = 1.11f;
         while (time < timer)
         {
             time += Time.deltaTime;

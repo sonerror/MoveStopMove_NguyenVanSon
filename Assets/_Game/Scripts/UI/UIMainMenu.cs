@@ -9,9 +9,11 @@ public class UIMainMenu : UICanvas
     {
         Time.timeScale = 0f;
         canVasAlive.SetActive(false);
+        LevelManager.instance.player.move = false;
     }
     public void ButtonPLAY()
     {
+        LevelManager.instance.player.move = true;
         Time.timeScale = 1f;
         gameObject.SetActive(false);
         canVasAlive.SetActive(true);

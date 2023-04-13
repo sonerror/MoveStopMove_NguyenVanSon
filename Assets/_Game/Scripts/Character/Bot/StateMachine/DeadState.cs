@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UIExample;
 using Unity;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class DeadState : IState<Bot>
         time = 0.1f;
         timer = 3.1f;
         bot.OnDead();
+        bot._isCanMove = false;
     }
 
     public void OnExecute(Bot bot)
@@ -21,6 +23,7 @@ public class DeadState : IState<Bot>
         {
 
             bot._isDead = false;
+            bot.ChangeState(new IdleState());
 
             SimplePool.Despawn(bot);
             LevelManager.instance.alive--;
