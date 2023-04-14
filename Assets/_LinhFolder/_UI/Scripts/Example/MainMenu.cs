@@ -22,7 +22,15 @@ namespace UIExample
         }
         public void buttomSkin()
         {
-
+            UIManager.Ins.OpenUI<UIShopSkin>();
+            GameManager.Ins.UIShopWeapon();
+            CloseDirectly();
+        }
+        public void ButtonSweapon()
+        {
+            UIManager.Ins.OpenUI<UIShopWeapon>();
+            GameManager.Ins.UIShopWeapon();
+            CloseDirectly();
         }
     }
 }

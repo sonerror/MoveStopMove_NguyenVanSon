@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Axe_0_Weapon
   m_EditorClassIdentifier: 
   _weapon: {fileID: 4811175619948131920, guid: 14343d53b6d972a429c981218f9a2a36, type: 3}
-  _weaponPrefab: {fileID: -530740928991593453, guid: 2199afa6ebead0f449d159e1f7d15238, type: 3}
-  _typeSpawnWeapon: 3
+  _weaponPrefab: {fileID: -769213124386549961, guid: 2199afa6ebead0f449d159e1f7d15238, type: 3}
+  _typeSpawnWeapon: 1

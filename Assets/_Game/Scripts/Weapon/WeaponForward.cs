@@ -9,7 +9,7 @@ public class WeaponForward : WeaponController
     {
         currentPostion = _character.transform.position;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         MoveForward();
     }

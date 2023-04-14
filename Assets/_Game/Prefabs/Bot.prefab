@@ -551,11 +551,9 @@ MonoBehaviour:
   mask: {fileID: 1394557877879928706}
   _listTarget: []
   _weaponTypes:
-  - {fileID: 11400000, guid: 5480613343432644cbe0ce79b5a4dbb1, type: 2}
   - {fileID: 11400000, guid: 73964e3dd09825a41aa330367b3f70ed, type: 2}
   - {fileID: 11400000, guid: e64ff3139fc549e4098a24f45c5a78e2, type: 2}
   - {fileID: 11400000, guid: fa747323fe01f3f4087e8a8bba0af1a2, type: 2}
-  - {fileID: 11400000, guid: 89d1bb5a4c9369c40a698e61e009c894, type: 2}
   _weaponType: {fileID: 11400000, guid: 73964e3dd09825a41aa330367b3f70ed, type: 2}
   _weaponTransform: {fileID: 6928903753805269795}
   _indexWeapon: 0

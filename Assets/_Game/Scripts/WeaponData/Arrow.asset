@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapon: {fileID: 4837498293901240123, guid: 8fa7401bf50c41741930464545f44044, type: 3}
   _weaponPrefab: {fileID: -420894782551283259, guid: dacd4cce61143014f9a8257fcb9c9fe7, type: 3}
-  _typeSpawnWeapon: 0
+  _typeSpawnWeapon: 1

@@ -1416,11 +1416,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lerpTime: 10
   _mainMenuData:
-    _offSetStruct: {x: 0, y: 1, z: 4}
-    _eulerAnglesStruct: {x: 0, y: -180, z: 0}
+    _offSetStruct: {x: 0, y: 4, z: 10}
+    _eulerAnglesStruct: {x: 20, y: 180, z: 0}
   _gamePlayData:
     _offSetStruct: {x: 0, y: 20, z: -15}
     _eulerAnglesStruct: {x: 55, y: 0, z: 0}
+  _shopData:
+    _offSetStruct: {x: 0, y: 2, z: 10}
+    _eulerAnglesStruct: {x: 20, y: 180, z: 0}
   _player: {fileID: 427914368}
 --- !u!1 &1865919538
 GameObject:
@@ -1780,6 +1783,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1692584707966852402, guid: e4876024e64fe104ba70afa5d5a82bb2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1692584707966852403, guid: e4876024e64fe104ba70afa5d5a82bb2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1827,7 +1834,7 @@ PrefabInstance:
     - target: {fileID: 1692584707966852556, guid: e4876024e64fe104ba70afa5d5a82bb2, type: 3}
       propertyPath: _weaponType
       value: 
-      objectReference: {fileID: 11400000, guid: fa747323fe01f3f4087e8a8bba0af1a2, type: 2}
+      objectReference: {fileID: 11400000, guid: e64ff3139fc549e4098a24f45c5a78e2, type: 2}
     - target: {fileID: 1918585434793673778, guid: e4876024e64fe104ba70afa5d5a82bb2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

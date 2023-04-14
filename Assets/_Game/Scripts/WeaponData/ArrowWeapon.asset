@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2228daf751940c54d9b694937d76a504, type: 3}
   m_Name: ArrowWeapon
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 5509344686688635604, guid: d6c8625a4b7e1494391ca8c2c1a7e6c8, type: 3}
-  _weaponPrefab: {fileID: 2562641829937089610, guid: 90da5b27a44a0b94982db7efbbd16f92, type: 3}
+  _weapon: {fileID: 4811175619948131920, guid: 14343d53b6d972a429c981218f9a2a36, type: 3}
+  _weaponPrefab: {fileID: -769213124386549961, guid: 2199afa6ebead0f449d159e1f7d15238, type: 3}
   _typeSpawnWeapon: 1

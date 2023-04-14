@@ -35,7 +35,7 @@ public class Character : GameUnit
     {
         _isDead = false;
         ChangePant();
-       //ChangeAccessory();
+        //ChangeAccessory();
     }
     public void OnEnableWeapon(WeaponType weaponType)
     {
@@ -136,6 +136,7 @@ public class Character : GameUnit
     }
     public virtual void SpawnWeapon()
     {
+
         Vector3 target = GetClosestTarget();
         if (this._listTarget.Count > 0)
         {

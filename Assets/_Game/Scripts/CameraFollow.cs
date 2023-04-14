@@ -14,10 +14,12 @@ public class CameraFollow : MonoBehaviour
     {
         MainMenu = 0,
         GamePlay = 1,
+        Shop = 2,
     }
     [SerializeField] private float _lerpTime = 10f;
     [SerializeField] private CameraData _mainMenuData;
     [SerializeField] private CameraData _gamePlayData;
+    [SerializeField] private CameraData _shopData;
 
     [SerializeField] private Player _player;
     private State _state;
@@ -59,6 +61,10 @@ public class CameraFollow : MonoBehaviour
             case State.GamePlay:
                 _targetOffset = _gamePlayData._offSetStruct;
                 _targetEulerAngles = _gamePlayData._eulerAnglesStruct;
+                break;
+            case State.Shop:
+                _targetOffset = _shopData._offSetStruct;
+                _targetEulerAngles = _shopData._eulerAnglesStruct;
                 break;
         }
     }

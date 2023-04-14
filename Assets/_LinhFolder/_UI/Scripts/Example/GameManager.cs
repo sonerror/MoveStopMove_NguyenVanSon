@@ -38,6 +38,14 @@ namespace UIExample
         {
             _cameraFollow.ChangeState(CameraFollow.State.GamePlay);
         }
+        public void UIShopWeapon()
+        {
+            _cameraFollow.ChangeState(CameraFollow.State.Shop);
+        }
+        public void UIMainMenu()
+        {
+            _cameraFollow.ChangeState(CameraFollow.State.MainMenu);
+        }
     }
 
 }
