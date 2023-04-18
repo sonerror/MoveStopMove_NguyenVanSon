@@ -36,7 +36,6 @@ public class BotManager : GameUnit
             bot.gameObject.SetActive(false);
             bots.Add(bot);
         }
-
         SpawnRealBot(spawnNumberBot);
     }
     public void SpawnRealBot(int realBotSpawn)

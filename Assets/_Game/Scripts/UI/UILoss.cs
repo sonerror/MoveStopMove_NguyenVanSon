@@ -9,7 +9,6 @@ public class UILoss : UICanvas
 
     public void MenuButton()
     {
-        
         UIManager.Ins.OpenUI<MainMenu>();
         this.CloseDirectly();
         ResetGame();

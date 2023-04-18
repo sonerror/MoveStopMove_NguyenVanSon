@@ -19,17 +19,20 @@ public class DeadState : IState<Bot>
     public void OnExecute(Bot bot)
     {
         time += Time.deltaTime;
-        if (time > timer)
+        if (time >= timer)
         {
-
-            bot._isDead = false;
+            bot._isDead = true;
             bot.ChangeState(new IdleState());
-
             SimplePool.Despawn(bot);
             LevelManager.instance.alive--;
             if (LevelManager.instance.alive > BotManager.instance.spawnNumberBot)
             {
                 BotManager.instance.StartCoroutine(BotManager.instance.CoroutineSpawnBot());
+            }
+            if (LevelManager.instance.alive == 1)
+            {
+                UIManager.Ins.OpenUI<Win>();
+                UIManager.Ins.OpenUI<GamePlay>().CloseDirectly();
             }
             BotManager.instance.DespawnNameBot(bot);
             BotManager.instance.bots.Remove(bot);

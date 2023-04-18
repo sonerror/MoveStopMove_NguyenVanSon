@@ -6,10 +6,17 @@ namespace UIExample
 {
     public class GamePlay : UICanvas
     {
+        private void Update()
+        {
+            if(LevelManager.instance.alive == 1)
+            {
+                WinButton();
+            }
+        }
         public void WinButton()
         {
-            UIManager.Ins.OpenUI<Win>().score.text = Random.Range(100, 200).ToString();
-            CloseDirectly();
+           UIManager.Ins.OpenUI<Win>();
+           CloseDirectly();
         }
 
         public void LoseButton()

@@ -186,7 +186,7 @@ public class Character : GameUnit
     {
 
     }
-    public virtual void ChangdeSkin()
+    public virtual void ChangeSkin()
     {
 
     }

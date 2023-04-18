@@ -15,13 +15,6 @@ public class Bot : Character
     public bool _isCanMove;
     public GameObject botName;
 
-    /*    private void Start()
-        {
-            agent = GetComponent<NavMeshAgent>();
-            ChangeState(new IdleState());
-            ChangeWeapon(_indexWeapon);
-        }*/
-    // Update is called once per frame
     void Update()
     {
         if (currentState != null)
@@ -39,14 +32,10 @@ public class Bot : Character
     }
     public override void ChangeWeapon(int index)
     {
-        Debug.Log(_weaponType._typeSpawnWeapon);
         base.ChangeWeapon(index);
         index = Random.Range(0, _weaponTypes.Length);
-        Debug.Log(_weaponTypes.Length);
         _weaponType = _weaponTypes[index];
         OnEnableWeapon(_weaponType);
-        Debug.Log("loại vũ khí");
-
     }
     public void ChangeState(IState<Bot> state)
     {
@@ -54,38 +43,12 @@ public class Bot : Character
         {
             currentState.OnExit(this);
         }
-
         currentState = state;
-
         if (currentState != null)
         {
             currentState.OnEnter(this);
         }
     }
-
-    public IEnumerator DoAttack()
-    {
-        OnAttack();
-        float time = 0;
-        float timer = 1.11f;
-        while (time < timer)
-        {
-            time += Time.deltaTime;
-
-            yield return null;
-        }
-        int numRand = Random.Range(0, 100);
-        if (numRand > 50)
-        {
-            ChangeState(new IdleState());
-        }
-        else
-        {
-            ChangeState(new PatrolState());
-        }
-        yield return null;
-    }
-
     public override void OnAttack()
     {
         base.OnAttack();
@@ -127,6 +90,5 @@ public class Bot : Character
         OnMoveStop();
         SetMask(false);
         LevelManager.instance.RemoveTarget(this);
-
     }
 }

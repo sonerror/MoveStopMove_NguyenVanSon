@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UIExample
 {
     public class Win : UICanvas
     {
-        public Text score;
-
-        public void MainMenuButton()
+        public void ResetGame()
         {
-            UIManager.Ins.OpenUI<MainMenu>();
-            CloseDirectly();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        public void QuitGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+#if UNITY_STANDALONE
+            Application.Quit();
+#endif
+        }
+        public void NextLevelButton()
+        {
+
         }
     }
 }
