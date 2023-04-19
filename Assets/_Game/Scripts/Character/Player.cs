@@ -119,7 +119,6 @@ public class Player : Character
     }
     IEnumerator DoSpawnWeapon()
     {
-
         float timerate = 0.4f;
         float _time_2 = 0;
 

@@ -6,7 +6,7 @@ public class WeaponRote : MonoBehaviour
 {
     public float rotationSped;
 
-    void Update()
+    void LateUpdate()
     {
         transform.Rotate(0f,rotationSped * Time.deltaTime ,0f);
         
