@@ -58,17 +58,6 @@ public class Player : Character
             {
                 ChangeAnim(Constant.ANIM_IDLE);
             }
-
-            /*if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                _indexWeapon++;
-                if (_indexWeapon == _weaponTypes.Length)
-                {
-                    _indexWeapon = 0;
-                }
-                ChangeWeapon(_indexWeapon);
-            }*/
-
         }
     }
 

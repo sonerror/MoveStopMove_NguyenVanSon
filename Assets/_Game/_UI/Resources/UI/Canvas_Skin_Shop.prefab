@@ -596,6 +596,7 @@ GameObject:
   - component: {fileID: 873208243014763471}
   - component: {fileID: 873208243014763470}
   - component: {fileID: -2516424674128581645}
+  - component: {fileID: 8299416243901932955}
   m_Layer: 5
   m_Name: Canvas_Skin_Shop
   m_TagString: Untagged
@@ -699,6 +700,19 @@ MonoBehaviour:
   IsDestroyOnClose: 0
   griRoot: {fileID: 873208243088931567}
   itemPB: {fileID: 3832317998673962255, guid: b64fba8340a929243b0122b9ecc216be, type: 3}
+--- !u!114 &8299416243901932955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873208243014763469}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12580fc6b68c6b9469f7752d6e2daf95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDestroyOnClose: 0
 --- !u!1 &873208243088931566
 GameObject:
   m_ObjectHideFlags: 0

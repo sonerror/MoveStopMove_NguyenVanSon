@@ -34,7 +34,7 @@ public class Character : GameUnit
     public virtual void OnInit()
     {
         _isDead = false;
-        ChangePant();
+       // ChangePant();
         //ChangeAccessory();
     }
     public void OnEnableWeapon(WeaponType weaponType)

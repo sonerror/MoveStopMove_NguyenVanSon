@@ -5,9 +5,4 @@ using UnityEngine;
 
 public class UIShopSkin : UICanvas
 {
-    private void Start()
-    {
-        
-    }
-
 }

@@ -29,6 +29,7 @@ public class Bot : Character
         agent = GetComponent<NavMeshAgent>();
         ChangeState(new IdleState());
         ChangeWeapon(_indexWeapon);
+        ChangePant();
     }
     public override void ChangeWeapon(int index)
     {
@@ -36,6 +37,11 @@ public class Bot : Character
         index = Random.Range(0, _weaponTypes.Length);
         _weaponType = _weaponTypes[index];
         OnEnableWeapon(_weaponType);
+    }
+    public override void ChangePant()
+    {
+        base.ChangePant();
+
     }
     public void ChangeState(IState<Bot> state)
     {
