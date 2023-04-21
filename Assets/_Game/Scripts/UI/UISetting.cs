@@ -2,22 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UIExample;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UISetting : UICanvas
 {
-    void Start()
-    {
-        Time.timeScale = 0f;
-    }
     public void ButtonHome()
     {
-        UIManager.Ins.OpenUI<MainMenu>();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         CloseDirectly();
     }
     public void ButtonContinue()
     {
         CloseDirectly();
-        Time.timeScale = 1f;
         UIManager.Ins.OpenUI<GamePlay>();
 
     }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 public class WeaponManage : MonoBehaviour
 {
-    public static WeaponManage ins;
     public int money = 100;
     public int currentWeaponIndex;
     public GameObject[] weaponModels;
@@ -15,13 +14,15 @@ public class WeaponManage : MonoBehaviour
     public Text _textCost;
     private void Awake()
     {
-        ins = this;
+        /*   int oldmoney = PlayerPrefs.GetInt("NumberOfCost", 0);
+           _textCost.text = oldmoney.ToString();
+           PlayerPrefs.SetInt("NumberOfCost", money);*/
+        PlayerPrefs.SetInt("NumberOfCost", money);
         _textCost.text = money.ToString();
     }
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("NumberOfCost", money);
+        //PlayerPrefs.DeleteAll();
         foreach (WeaponBluePrint weapon in _weapons)
         {
             if (weapon._price == 0)
@@ -35,10 +36,10 @@ public class WeaponManage : MonoBehaviour
                 _useWeapon.gameObject.SetActive(false);
             }
         }
-        currentWeaponIndex = PlayerPrefs.GetInt("SelectWeapon", 0);
-        foreach (GameObject car in weaponModels)
+        currentWeaponIndex = PlayerPrefs.GetInt(Constant.SELECT_WEAPON, 0);
+        foreach (GameObject weapon in weaponModels)
         {
-            car.SetActive(false);
+            weapon.SetActive(false);
         }
         weaponModels[currentWeaponIndex].SetActive(true);
     }
@@ -60,7 +61,7 @@ public class WeaponManage : MonoBehaviour
         {
             return;
         }
-        PlayerPrefs.SetInt("SelectWeapon", currentWeaponIndex);
+        PlayerPrefs.SetInt(Constant.SELECT_WEAPON, currentWeaponIndex);
     }
     public void ChangeBack()
     {
@@ -76,18 +77,24 @@ public class WeaponManage : MonoBehaviour
         {
             return;
         }
-        PlayerPrefs.SetInt("SelectWeapon", currentWeaponIndex);
+        PlayerPrefs.SetInt(Constant.SELECT_WEAPON, currentWeaponIndex);
     }
     public void UnLockWeapon()
     {
         WeaponBluePrint c = _weapons[currentWeaponIndex];
         PlayerPrefs.SetInt(c._name, 1);
-        PlayerPrefs.SetInt("SelectWeapon", currentWeaponIndex);
+        PlayerPrefs.SetInt(Constant.SELECT_WEAPON, currentWeaponIndex);
         c._isUnlocked = true;
-        PlayerPrefs.SetInt("NumberOfCost", PlayerPrefs.GetInt("NumberOfCost", 0) - c._price);
-       int moneyNew = PlayerPrefs.GetInt("NumberOfCost", PlayerPrefs.GetInt("NumberOfCost", 0) - c._price);
+        PlayerPrefs.SetInt("NumberOfCost", PlayerPrefs.GetInt("NumberOfCost", money) - c._price);
+       int moneyNew = PlayerPrefs.GetInt("NumberOfCost", PlayerPrefs.GetInt("NumberOfCost", money) - c._price);
+        PlayerPrefs.Save();
         _textCost.text = moneyNew.ToString();
-
+    }
+    public void ButtonSelectWeapon()
+    {
+        WeaponBluePrint c = _weapons[currentWeaponIndex];
+        Debug.Log(c._index);
+        LevelManager.instance.player.ChangeWeapon(c._index);
     }
     private void UpdateUI()
     {

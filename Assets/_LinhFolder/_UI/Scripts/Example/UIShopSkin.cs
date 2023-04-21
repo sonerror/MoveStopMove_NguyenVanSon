@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class UIShopSkin : UICanvas
 {
-    public void ButtonQuit()
+    private void Start()
     {
-        CloseDirectly();
-        UIManager.Ins.OpenUI<MainMenu>();
-        GameManager.Ins.UIMainMenu();
+        
     }
+
 }

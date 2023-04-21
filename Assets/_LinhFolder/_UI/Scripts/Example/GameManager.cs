@@ -29,6 +29,11 @@ namespace UIExample
         public void Start()
         {
             WaitGame();
+            if(!PlayerPrefs.HasKey(Constant.COST_KEY))
+            {
+                Pref.Cost = 1000;
+            }
+            Pref.Cost = 1000;
         }
         public void WaitGame()
         {      

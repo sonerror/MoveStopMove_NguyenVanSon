@@ -22,7 +22,7 @@ namespace UIExample
         }
         public void buttomSkin()
         {
-            UIManager.Ins.OpenUI<UIShopSkin>();
+            UIManager.Ins.OpenUI<ShopDialog>();
             GameManager.Ins.UIShopWeapon();
             CloseDirectly();
         }

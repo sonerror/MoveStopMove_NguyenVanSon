@@ -6,6 +6,10 @@ namespace UIExample
 {
     public class GamePlay : UICanvas
     {
+        private void Start()
+        {
+            Time.timeScale = 1f;
+        }
         private void Update()
         {
             if(LevelManager.instance.alive == 1)
@@ -27,6 +31,7 @@ namespace UIExample
 
         public void SettingButton()
         {
+            Time.timeScale = 0.0f;
             UIManager.Ins.OpenUI<UISetting>();
         }
     }
