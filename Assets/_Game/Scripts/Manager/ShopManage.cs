@@ -16,7 +16,7 @@ public class ShopManage : Singleton<ShopManage>
         {
             for(int i = 0; i< items.Length; i++)
             {
-                if(i==0)
+                if(i == 0)
                 {
                     Pref.SetBool(Constant.SKIN_PREF + i, true);
                 }

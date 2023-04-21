@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UIExample;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ShopDialog : UICanvas
 {
@@ -41,8 +42,10 @@ public class ShopDialog : UICanvas
                 itemUIClone.UpdateUI(item, idx);
                 if (itemUIClone.btn)
                 {
+
                     itemUIClone.btn.onClick.RemoveAllListeners();
                     itemUIClone.btn.onClick.AddListener(() => ItemEvent(item, idx));
+                    // Debug.Log();
                 }
             }
 
@@ -85,7 +88,7 @@ public class ShopDialog : UICanvas
             }
             else
             {
-                Debug.Log("ban khong du tien");
+                
             }
         }
     }

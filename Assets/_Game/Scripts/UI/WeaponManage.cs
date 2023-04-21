@@ -5,21 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 public class WeaponManage : MonoBehaviour
 {
-    public int money = 100;
     public int currentWeaponIndex;
     public GameObject[] weaponModels;
     public WeaponBluePrint[] _weapons;
     public Button _buttonBuy;
     public Button _useWeapon;
     public Text _textCost;
-    private void Awake()
-    {
-        /*   int oldmoney = PlayerPrefs.GetInt("NumberOfCost", 0);
-           _textCost.text = oldmoney.ToString();
-           PlayerPrefs.SetInt("NumberOfCost", money);*/
-        PlayerPrefs.SetInt("NumberOfCost", money);
-        _textCost.text = money.ToString();
-    }
+
     private void Start()
     {
         //PlayerPrefs.DeleteAll();
@@ -85,10 +77,8 @@ public class WeaponManage : MonoBehaviour
         PlayerPrefs.SetInt(c._name, 1);
         PlayerPrefs.SetInt(Constant.SELECT_WEAPON, currentWeaponIndex);
         c._isUnlocked = true;
-        PlayerPrefs.SetInt("NumberOfCost", PlayerPrefs.GetInt("NumberOfCost", money) - c._price);
-       int moneyNew = PlayerPrefs.GetInt("NumberOfCost", PlayerPrefs.GetInt("NumberOfCost", money) - c._price);
-        PlayerPrefs.Save();
-        _textCost.text = moneyNew.ToString();
+        Pref.Cost -= c._price;
+
     }
     public void ButtonSelectWeapon()
     {
@@ -108,7 +98,7 @@ public class WeaponManage : MonoBehaviour
         {
             _buttonBuy.gameObject.SetActive(true);
             _buttonBuy.GetComponentInChildren<TextMeshProUGUI>().text = "Buy - " + c._price;
-            if (c._price < PlayerPrefs.GetInt("NumberOfCost", 0))
+            if (c._price < Pref.Cost)
             {
                 _buttonBuy.interactable = true;
                 _useWeapon.gameObject.SetActive(false);

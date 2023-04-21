@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.CullingGroup;
-
+using UnityEngine.UI;
 namespace UIExample
 {
     public class GameManager : Singleton<GameManager>
@@ -29,11 +29,16 @@ namespace UIExample
         public void Start()
         {
             WaitGame();
-            if(!PlayerPrefs.HasKey(Constant.COST_KEY))
+           /* if(!PlayerPrefs.HasKey(Constant.COST_KEY))
             {
-                Pref.Cost = 1000;
-            }
-            Pref.Cost = 1000;
+                Pref.Cost = 100;
+            }*/
+            Pref.Cost = 100;
+            UICoins();
+        }
+        public void Update()
+        {
+            SkinActive();
         }
         public void WaitGame()
         {      
@@ -50,6 +55,15 @@ namespace UIExample
         public void UIMainMenu()
         {
             _cameraFollow.ChangeState(CameraFollow.State.MainMenu);
+        }
+        public void SkinActive()
+        {
+            int newSkinPb = ShopManage.Ins.items[Pref.CurSkinId]._index;
+            LevelManager.instance.player.ChangePantFormShop(newSkinPb);
+        }
+        public void UICoins()
+        {
+            UIManager.Ins.OpenUI<UICoins>();
         }
     }
 

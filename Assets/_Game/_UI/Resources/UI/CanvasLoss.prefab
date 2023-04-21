@@ -290,7 +290,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Menu
+  m_Text: "Ch\u01A1i L\u1EA1i"
 --- !u!1 &3164992713490856443
 GameObject:
   m_ObjectHideFlags: 0

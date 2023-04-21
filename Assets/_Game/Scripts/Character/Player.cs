@@ -134,6 +134,10 @@ public class Player : Character
         _weaponType = _weaponTypes[index];
         OnEnableWeapon(_weaponType);
     }
+    public void ChangePantFormShop(int index)
+    {
+        _modelPant.transform.GetComponent<Renderer>().material = _pantTypes[index];
+    }
     public override void OnDead()
     {
         base.OnDead();
