@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEditor.Progress;
+
 public class WeaponManage : MonoBehaviour
 {
     public int currentWeaponIndex;
@@ -10,11 +12,24 @@ public class WeaponManage : MonoBehaviour
     public WeaponBluePrint[] _weapons;
     public Button _buttonBuy;
     public Button _useWeapon;
-    public Text _textCost;
+    public Text _textNameWeapon;
+    public Transform _transform;
 
+    private void Awake()
+    {
+
+    }
     private void Start()
     {
         //PlayerPrefs.DeleteAll();
+        CreateImgWeapon();
+        currentWeaponIndex = PlayerPrefs.GetInt(Constant.SELECT_WEAPON, 0);
+        foreach (GameObject weapon in weaponModels)
+        {
+            weapon.gameObject.SetActive(false);
+        }
+        weaponModels[currentWeaponIndex].gameObject.SetActive(true);
+        Debug.Log("wepon " + currentWeaponIndex);
         foreach (WeaponBluePrint weapon in _weapons)
         {
             if (weapon._price == 0)
@@ -28,26 +43,35 @@ public class WeaponManage : MonoBehaviour
                 _useWeapon.gameObject.SetActive(false);
             }
         }
-        currentWeaponIndex = PlayerPrefs.GetInt(Constant.SELECT_WEAPON, 0);
-        foreach (GameObject weapon in weaponModels)
-        {
-            weapon.SetActive(false);
-        }
-        weaponModels[currentWeaponIndex].SetActive(true);
+
+
     }
     private void Update()
     {
         UpdateUI();
     }
+    private void CreateImgWeapon()
+    {
+        for (int i = 0; i < weaponModels.Length; i++)
+        {
+            var item = weaponModels[i];
+            Debug.Log("weapon ins");
+            var itemUIClone = Instantiate(item, Vector3.zero, Quaternion.identity);
+            itemUIClone.gameObject.transform.SetParent(_transform);
+            itemUIClone.gameObject.transform.localPosition = Vector3.zero;
+            itemUIClone.gameObject.transform.localScale = Vector3.one;
+
+        }
+    }
     public void ChangeNext()
     {
-        weaponModels[currentWeaponIndex].SetActive(false);
+        weaponModels[currentWeaponIndex].gameObject.SetActive(false);
         currentWeaponIndex++;
         if (currentWeaponIndex == weaponModels.Length)
         {
             currentWeaponIndex = 0;
         }
-        weaponModels[currentWeaponIndex].SetActive(true);
+        weaponModels[currentWeaponIndex].gameObject.SetActive(true);
         WeaponBluePrint c = _weapons[currentWeaponIndex];
         if (!c._isUnlocked)
         {
@@ -57,13 +81,13 @@ public class WeaponManage : MonoBehaviour
     }
     public void ChangeBack()
     {
-        weaponModels[currentWeaponIndex].SetActive(false);
+        weaponModels[currentWeaponIndex].gameObject.SetActive(false);
         currentWeaponIndex--;
         if (currentWeaponIndex == -1)
         {
             currentWeaponIndex = weaponModels.Length - 1;
         }
-        weaponModels[currentWeaponIndex].SetActive(true);
+        weaponModels[currentWeaponIndex].gameObject.SetActive(true);
         WeaponBluePrint c = _weapons[currentWeaponIndex];
         if (!c._isUnlocked)
         {
@@ -78,7 +102,6 @@ public class WeaponManage : MonoBehaviour
         PlayerPrefs.SetInt(Constant.SELECT_WEAPON, currentWeaponIndex);
         c._isUnlocked = true;
         Pref.Cost -= c._price;
-
     }
     public void ButtonSelectWeapon()
     {
@@ -109,5 +132,6 @@ public class WeaponManage : MonoBehaviour
                 _useWeapon.gameObject.SetActive(false);
             }
         }
+        _textNameWeapon.text = c._name;
     }
 }

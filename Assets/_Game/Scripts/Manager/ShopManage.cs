@@ -28,7 +28,6 @@ public class ShopManage : Singleton<ShopManage>
                     }
                 }
             }
-
         }
     }
 }

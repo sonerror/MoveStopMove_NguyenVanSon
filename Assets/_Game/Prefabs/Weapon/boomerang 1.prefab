@@ -63,7 +63,7 @@ MonoBehaviour:
   _character: {fileID: 0}
   _isUpdatePosition: 0
   pivotPoint: {fileID: 0}
-  rotationSpeed: 700
+  rotationSpeed: 1000
 --- !u!1001 &5400384883319275182
 PrefabInstance:
   m_ObjectHideFlags: 0
