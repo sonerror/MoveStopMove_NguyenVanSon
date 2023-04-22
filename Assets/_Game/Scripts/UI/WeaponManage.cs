@@ -22,7 +22,7 @@ public class WeaponManage : MonoBehaviour
     private void Start()
     {
         //PlayerPrefs.DeleteAll();
-        CreateImgWeapon();
+       // CreateImgWeapon();
         currentWeaponIndex = PlayerPrefs.GetInt(Constant.SELECT_WEAPON, 0);
         foreach (GameObject weapon in weaponModels)
         {

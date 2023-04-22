@@ -19,4 +19,6 @@ public class Constant
     public static string COST_KEY = "cost";
 
     public static string SELECT_WEAPON = "SelectWeapon";
+    public static string CUR_BTN_ID = "cur_btn_id";
+    public static string BTN_PREF = "btn_";
 }

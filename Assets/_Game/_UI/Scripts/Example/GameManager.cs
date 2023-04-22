@@ -41,7 +41,8 @@ namespace UIExample
             SkinActive();
         }
         public void WaitGame()
-        {      
+        {   
+
             UIManager.Ins.OpenUI<MainMenu>();
         }
         public void StartGame()
@@ -58,7 +59,7 @@ namespace UIExample
         }
         public void SkinActive()
         {
-            int newSkinPb = ShopManage.Ins.items[Pref.CurSkinId]._index;
+            int newSkinPb = ShopManage.Ins.itemsShot[Pref.CurSkinId]._index;
             LevelManager.instance.player.ChangePantFormShop(newSkinPb);
         }
         public void UICoins()
