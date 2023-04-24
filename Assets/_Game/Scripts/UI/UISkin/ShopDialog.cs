@@ -127,7 +127,7 @@ public class ShopDialog : UICanvas
             }
             else
             {
-
+                
             }
         }
     }

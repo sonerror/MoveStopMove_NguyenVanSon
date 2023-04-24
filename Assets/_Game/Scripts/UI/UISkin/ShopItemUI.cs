@@ -7,6 +7,7 @@ public class ShopItemUI : MonoBehaviour
     public Text priceText;
     public Image hub;
     public Button btn;
+    private bool isOwned =false;
     public void UpdateUI(ShopItem item, int shopItemId)
     {
         if (item == null)  return;
@@ -24,7 +25,11 @@ public class ShopItemUI : MonoBehaviour
             else
             {
                 if (priceText)
+                {
                     priceText.text = "OWNED";
+                    isOwned = true;
+                }
+
             }
         }
         else
@@ -34,6 +39,10 @@ public class ShopItemUI : MonoBehaviour
                 priceText.text = item.price.ToString();
             }
         }
-        
+        if (Pref.Cost < item.price && !isUnlocked)
+        {
+            btn.interactable = false;
+        }
+
     }
 }
