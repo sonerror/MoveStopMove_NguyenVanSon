@@ -10,6 +10,8 @@ public class ShopManage : Singleton<ShopManage>
     public ShopItem[] itemsAccessory;
     public ShopItem[] itemsSkin;
     public ShopItem[] itemsHat;
+    [SerializeField] public WeaponType[] _weaponTypes;
+    [SerializeField] public Material[] _pantTypes;
     private void Start()
     {
         Shot();

@@ -21,6 +21,7 @@ public class Player : Character
 
     void Start()
     {
+
         OnEnableWeapon(_weaponType);
         _isDead = false;
         ChangeAnim(Constant.ANIM_IDLE);
@@ -110,7 +111,6 @@ public class Player : Character
     {
         float timerate = 0.4f;
         float _time_2 = 0;
-
         while (_time_2 < timerate)
         {
             _time_2 += Time.deltaTime;
@@ -131,12 +131,12 @@ public class Player : Character
     public override void ChangeWeapon(int index)
     {
         base.ChangeWeapon(index);
-        _weaponType = _weaponTypes[index];
+        _weaponType = ShopManage.Ins._weaponTypes[index];
         OnEnableWeapon(_weaponType);
     }
     public void ChangePantFormShop(int index)
     {
-        _modelPant.transform.GetComponent<Renderer>().material = _pantTypes[index];
+        _modelPant.transform.GetComponent<Renderer>().material = ShopManage.Ins._pantTypes[index];
     }
     public override void OnDead()
     {

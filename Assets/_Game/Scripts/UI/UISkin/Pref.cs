@@ -8,8 +8,8 @@ public class Pref
     }
     public static int CurId
     {
-        set => PlayerPrefs.SetInt(Constant.CUR_SKIN_ID, value);
-        get => PlayerPrefs.GetInt(Constant.CUR_SKIN_ID);
+        set => PlayerPrefs.SetInt(Constant.CUR_ITEM_ID, value);
+        get => PlayerPrefs.GetInt(Constant.CUR_ITEM_ID);
     }
     public static int Cost
     {

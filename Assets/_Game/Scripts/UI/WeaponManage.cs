@@ -36,8 +36,6 @@ public class WeaponManage : MonoBehaviour
                 _useWeapon.gameObject.SetActive(false);
             }
         }
-
-
     }
     private void Update()
     {

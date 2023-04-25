@@ -1031,6 +1031,21 @@ MonoBehaviour:
   - price: 30
     hub: {fileID: 21300000, guid: 578c1840f64bd634bad62c6f60eba249, type: 3}
     _index: 8
+  _weaponTypes:
+  - {fileID: 11400000, guid: 73964e3dd09825a41aa330367b3f70ed, type: 2}
+  - {fileID: 11400000, guid: 5480613343432644cbe0ce79b5a4dbb1, type: 2}
+  - {fileID: 11400000, guid: fa747323fe01f3f4087e8a8bba0af1a2, type: 2}
+  - {fileID: 11400000, guid: e64ff3139fc549e4098a24f45c5a78e2, type: 2}
+  _pantTypes:
+  - {fileID: 2100000, guid: 9c9d239ac585d4e4cb62fde5cc8a811a, type: 2}
+  - {fileID: 2100000, guid: a0d8ffcb66938b448bf52382bfe14caf, type: 2}
+  - {fileID: 2100000, guid: da857808eaa551d4cbe236be2e034416, type: 2}
+  - {fileID: 2100000, guid: e5421929f57ab694ba8ec1e52848616e, type: 2}
+  - {fileID: 2100000, guid: 6eb925d2fac49af4eb27177efebaa271, type: 2}
+  - {fileID: 2100000, guid: 3e8d152e0a8225b408ee3fd378e7cddf, type: 2}
+  - {fileID: 2100000, guid: 6e448cabf9ed32f438787bb00fb048a9, type: 2}
+  - {fileID: 2100000, guid: d5a0a4ab3c771c54f8ed5453907e04d9, type: 2}
+  - {fileID: 2100000, guid: 67e870cdbb84e4c478c9d443642cb7f2, type: 2}
 --- !u!1001 &1282837041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1040,7 +1055,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5591354731364701922, guid: 2d6a7a726b4b5f04d9c73c1c9b404a64, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: Canvas_Indicator
       objectReference: {fileID: 0}
     - target: {fileID: 5591354731364701926, guid: 2d6a7a726b4b5f04d9c73c1c9b404a64, type: 3}
       propertyPath: m_Pivot.x

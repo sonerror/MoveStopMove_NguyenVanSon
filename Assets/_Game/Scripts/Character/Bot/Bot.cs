@@ -34,8 +34,8 @@ public class Bot : Character
     public override void ChangeWeapon(int index)
     {
         base.ChangeWeapon(index);
-        index = Random.Range(0, _weaponTypes.Length);
-        _weaponType = _weaponTypes[index];
+        index = Random.Range(0, ShopManage.Ins._weaponTypes.Length);
+        _weaponType = ShopManage.Ins._weaponTypes[index];
         OnEnableWeapon(_weaponType);
     }
     public override void ChangePant()

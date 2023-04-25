@@ -15,7 +15,7 @@ public class Constant
 
 
     public static string SKIN_PREF = "skin_";
-    public static string CUR_SKIN_ID = "cur_skin_id";
+    public static string CUR_ITEM_ID = "cur_skin_id";
     public static string COST_KEY = "cost";
 
     public static string SELECT_WEAPON = "SelectWeapon";

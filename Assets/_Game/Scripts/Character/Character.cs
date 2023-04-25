@@ -9,13 +9,12 @@ public class Character : GameUnit
     [SerializeField] GameObject mask;
     [SerializeField] public List<Character> _listTarget = new List<Character>();
 
-    public WeaponType[] _weaponTypes;
+
     [SerializeField] public WeaponType _weaponType;
     [SerializeField] public Transform _weaponTransform;
     [SerializeField] public int _indexWeapon = 0;
     private GameObject modelWeapon;
 
-    public Material[] _pantTypes;
     public GameObject _modelPant;
 
     public GameObject[] _hatTypes;
@@ -167,7 +166,7 @@ public class Character : GameUnit
     public virtual void ChangeAccessory()
     {
         int index;
-        index = UnityEngine.Random.Range(0, _pantTypes.Length);
+        index = UnityEngine.Random.Range(0,ShopManage.Ins._pantTypes.Length);
         if (_hatType != null)
         {
             Destroy(_hatType);
@@ -179,8 +178,8 @@ public class Character : GameUnit
     public virtual void ChangePant()
     {
         int index;
-        index = UnityEngine.Random.Range(0, _pantTypes.Length);
-        _modelPant.transform.GetComponent<Renderer>().material = _pantTypes[index];
+        index = UnityEngine.Random.Range(0, ShopManage.Ins._pantTypes.Length);
+        _modelPant.transform.GetComponent<Renderer>().material = ShopManage.Ins._pantTypes[index];
     }
     public virtual void ChangeWeapon(int index)
     {
