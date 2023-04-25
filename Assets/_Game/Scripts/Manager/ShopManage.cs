@@ -6,7 +6,10 @@ using UnityEngine;
 public class ShopManage : Singleton<ShopManage>
 {
     public ShopItem[] itemsShot;
-    public ShopItem[] itemBtnHeader;
+    public ShopItem[] itemsBtnHeader;
+    public ShopItem[] itemsAccessory;
+    public ShopItem[] itemsSkin;
+    public ShopItem[] itemsHat;
     private void Start()
     {
         Shot();
@@ -14,13 +17,13 @@ public class ShopManage : Singleton<ShopManage>
     }
     void BtnHeader()
     {
-        if (itemBtnHeader == null || itemBtnHeader.Length <= 0)
+        if (itemsBtnHeader == null || itemsBtnHeader.Length <= 0)
         {
             return;
         }
         else
         {
-            for (int i = 0; i < itemBtnHeader.Length; i++)
+            for (int i = 0; i < itemsBtnHeader.Length; i++)
             {
                 if (i == 0)
                 {

@@ -763,11 +763,11 @@ MonoBehaviour:
   - {fileID: 172323695412585218}
   - {fileID: 532667109776129633}
   _weapons:
-  - _name: Arrow
+  - _name: Axe
     _index: 0
     _price: 0
     _isUnlocked: 0
-  - _name: Axe
+  - _name: Arrow
     _index: 1
     _price: 30
     _isUnlocked: 0

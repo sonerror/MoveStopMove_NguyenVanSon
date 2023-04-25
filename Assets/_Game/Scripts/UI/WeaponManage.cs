@@ -15,21 +15,14 @@ public class WeaponManage : MonoBehaviour
     public Text _textNameWeapon;
     public Transform _transform;
 
-    private void Awake()
-    {
-
-    }
     private void Start()
     {
-        //PlayerPrefs.DeleteAll();
-       // CreateImgWeapon();
         currentWeaponIndex = PlayerPrefs.GetInt(Constant.SELECT_WEAPON, 0);
         foreach (GameObject weapon in weaponModels)
         {
-            weapon.gameObject.SetActive(false);
+            weapon.SetActive(false);
         }
-        weaponModels[currentWeaponIndex].gameObject.SetActive(true);
-        Debug.Log("wepon " + currentWeaponIndex);
+        weaponModels[currentWeaponIndex].SetActive(true);
         foreach (WeaponBluePrint weapon in _weapons)
         {
             if (weapon._price == 0)
@@ -50,22 +43,9 @@ public class WeaponManage : MonoBehaviour
     {
         UpdateUI();
     }
-    private void CreateImgWeapon()
-    {
-        for (int i = 0; i < weaponModels.Length; i++)
-        {
-            var item = weaponModels[i];
-            Debug.Log("weapon ins");
-            var itemUIClone = Instantiate(item, Vector3.zero, Quaternion.identity);
-            itemUIClone.gameObject.transform.SetParent(_transform);
-            itemUIClone.gameObject.transform.localPosition = Vector3.zero;
-            itemUIClone.gameObject.transform.localScale = Vector3.one;
-
-        }
-    }
     public void ChangeNext()
     {
-        weaponModels[currentWeaponIndex].gameObject.SetActive(false);
+        weaponModels[currentWeaponIndex].SetActive(false);
         currentWeaponIndex++;
         if (currentWeaponIndex == weaponModels.Length)
         {
@@ -81,13 +61,13 @@ public class WeaponManage : MonoBehaviour
     }
     public void ChangeBack()
     {
-        weaponModels[currentWeaponIndex].gameObject.SetActive(false);
+        weaponModels[currentWeaponIndex].SetActive(false);
         currentWeaponIndex--;
         if (currentWeaponIndex == -1)
         {
             currentWeaponIndex = weaponModels.Length - 1;
         }
-        weaponModels[currentWeaponIndex].gameObject.SetActive(true);
+        weaponModels[currentWeaponIndex].SetActive(true);
         WeaponBluePrint c = _weapons[currentWeaponIndex];
         if (!c._isUnlocked)
         {

@@ -7,8 +7,7 @@ public class ShopItemUI : MonoBehaviour
     public Text priceText;
     public Image hub;
     public Button btn;
-    private bool isOwned =false;
-    public void UpdateUI(ShopItem item, int shopItemId)
+    public void UpdateItemUI(ShopItem item, int shopItemId)
     {
         if (item == null)  return;
 
@@ -17,7 +16,7 @@ public class ShopItemUI : MonoBehaviour
         bool isUnlocked = Pref.GetBool(Constant.SKIN_PREF + shopItemId);
         if(isUnlocked)
         {
-            if(shopItemId == Pref.CurSkinId)
+            if(shopItemId == Pref.CurId)
             {
                 if (priceText)
                     priceText.text = "Active";
@@ -27,7 +26,6 @@ public class ShopItemUI : MonoBehaviour
                 if (priceText)
                 {
                     priceText.text = "OWNED";
-                    isOwned = true;
                 }
 
             }

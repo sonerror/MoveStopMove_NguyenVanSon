@@ -14,8 +14,7 @@ public class UISetting : UICanvas
     public void ButtonContinue()
     {
         CloseDirectly();
-        UIManager.Ins.OpenUI<GamePlay>();
-
+        GameManager.Ins.WaitGame();
     }
     public void QuitGame()
     {

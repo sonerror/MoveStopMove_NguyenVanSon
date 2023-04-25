@@ -901,7 +901,7 @@ GameObject:
   - component: {fileID: 1151822960}
   - component: {fileID: 1151822961}
   m_Layer: 0
-  m_Name: ShopSkinManage
+  m_Name: ShopManage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -961,19 +961,76 @@ MonoBehaviour:
   - price: 50
     hub: {fileID: 21300000, guid: 343f00cc518f2c34090d54d64a12c62e, type: 3}
     _index: 8
-  itemBtnHeader:
+  itemsBtnHeader:
   - price: 0
     hub: {fileID: 21300000, guid: 8e5b7ebcb3bb9844eb6678f88172c11f, type: 3}
     _index: 0
-  - price: 1
-    hub: {fileID: 21300000, guid: f5aefc41e9036f544ad229c28f2f38af, type: 3}
-    _index: 1
-  - price: 2
+  - price: 0
     hub: {fileID: 21300000, guid: c7aa269b192260a43a629e1a831c149b, type: 3}
-    _index: 2
-  - price: 3
+    _index: 1
+  - price: 0
     hub: {fileID: 21300000, guid: 1cc258795aa45f64e836593aab40d479, type: 3}
+    _index: 2
+  - price: 0
+    hub: {fileID: 21300000, guid: f5aefc41e9036f544ad229c28f2f38af, type: 3}
     _index: 3
+  itemsAccessory:
+  - price: 10
+    hub: {fileID: 21300000, guid: 06a554ce42709b24d9f440902d9c0de9, type: 3}
+    _index: 0
+  - price: 10
+    hub: {fileID: 21300000, guid: 5033499010ad59241ad2cbdc6b1f9694, type: 3}
+    _index: 1
+  - price: 20
+    hub: {fileID: 21300000, guid: 3c4959987befda24799d27ea7fd35e3f, type: 3}
+    _index: 2
+  - price: 30
+    hub: {fileID: 21300000, guid: 3dedbea6f56343249805bb0aee8693f9, type: 3}
+    _index: 3
+  itemsSkin:
+  - price: 100
+    hub: {fileID: 21300000, guid: 47489d63e5926ef478fda009b5f7b683, type: 3}
+    _index: 0
+  - price: 100
+    hub: {fileID: 21300000, guid: 8f00f4e5c6662634d9d6fb1e2e2b01ce, type: 3}
+    _index: 1
+  - price: 100
+    hub: {fileID: 21300000, guid: 10f805f9a39668441b0d858a53a90087, type: 3}
+    _index: 2
+  - price: 100
+    hub: {fileID: 21300000, guid: 74f22cae5f11d6049b5ad45d2c791d6d, type: 3}
+    _index: 3
+  - price: 200
+    hub: {fileID: 21300000, guid: cf2c2f0409a120d4084268be4362625f, type: 3}
+    _index: 4
+  itemsHat:
+  - price: 10
+    hub: {fileID: 21300000, guid: eb69cff6254433d4e9c38084ef04f590, type: 3}
+    _index: 0
+  - price: 10
+    hub: {fileID: 21300000, guid: 1cbb565e6302e234e82c3d5766667afd, type: 3}
+    _index: 1
+  - price: 10
+    hub: {fileID: 21300000, guid: e18f18b183a01424f8c20f088905e355, type: 3}
+    _index: 2
+  - price: 0
+    hub: {fileID: 21300000, guid: 5c06bab390a79764d8d0539b57b1cf45, type: 3}
+    _index: 3
+  - price: 10
+    hub: {fileID: 21300000, guid: da18f161bc01907449ffa4e6f5b50614, type: 3}
+    _index: 4
+  - price: 30
+    hub: {fileID: 21300000, guid: 703801d9a7f60c244a3ee076f49edb23, type: 3}
+    _index: 5
+  - price: 30
+    hub: {fileID: 21300000, guid: afbe2aeef5262db48ac8ac1124dfd412, type: 3}
+    _index: 6
+  - price: 30
+    hub: {fileID: 21300000, guid: 618234528de04654db5493d4d04dbbf2, type: 3}
+    _index: 7
+  - price: 30
+    hub: {fileID: 21300000, guid: 578c1840f64bd634bad62c6f60eba249, type: 3}
+    _index: 8
 --- !u!1001 &1282837041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1919,7 +1976,7 @@ PrefabInstance:
     - target: {fileID: 1692584707966852556, guid: e4876024e64fe104ba70afa5d5a82bb2, type: 3}
       propertyPath: _weaponType
       value: 
-      objectReference: {fileID: 11400000, guid: e64ff3139fc549e4098a24f45c5a78e2, type: 2}
+      objectReference: {fileID: 11400000, guid: 73964e3dd09825a41aa330367b3f70ed, type: 2}
     - target: {fileID: 1692584707966852556, guid: e4876024e64fe104ba70afa5d5a82bb2, type: 3}
       propertyPath: _weaponTypes.Array.size
       value: 4

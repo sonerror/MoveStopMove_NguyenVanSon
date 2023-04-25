@@ -527,6 +527,9 @@ MonoBehaviour:
   IsDestroyOnClose: 0
   griRootShot: {fileID: 873208243088931567}
   griRootBtnHeader: {fileID: 2002714088067400197}
+  griRootAccessory: {fileID: 3643344060280555723}
+  griRootSkin: {fileID: 3539453391556506101}
+  griRootHat: {fileID: 2439817171462199789}
   itemPB: {fileID: 3832317998673962255, guid: b64fba8340a929243b0122b9ecc216be, type: 3}
   itemHeaderPB: {fileID: 1973986149365411793, guid: cf2d5e928b8732c4cbda5f479795306a, type: 3}
   shops:
@@ -569,7 +572,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00002182277}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1045, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &873208243088931561
 MonoBehaviour:
@@ -1397,7 +1400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &128873598888299554
 RectTransform:
   m_ObjectHideFlags: 0

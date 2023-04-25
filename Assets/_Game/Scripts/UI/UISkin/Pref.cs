@@ -6,7 +6,7 @@ public class Pref
         set => PlayerPrefs.SetInt(Constant.CUR_BTN_ID, value);
         get => PlayerPrefs.GetInt(Constant.CUR_BTN_ID);
     }
-    public static int CurSkinId
+    public static int CurId
     {
         set => PlayerPrefs.SetInt(Constant.CUR_SKIN_ID, value);
         get => PlayerPrefs.GetInt(Constant.CUR_SKIN_ID);

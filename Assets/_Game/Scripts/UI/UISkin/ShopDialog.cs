@@ -8,6 +8,9 @@ public class ShopDialog : UICanvas
 {
     public Transform griRootShot;
     public Transform griRootBtnHeader;
+    public Transform griRootAccessory;
+    public Transform griRootSkin;
+    public Transform griRootHat;
     public ShopItemUI itemPB;
     public ShopBtnHeader itemHeaderPB;
     public GameObject[] shops;
@@ -16,30 +19,34 @@ public class ShopDialog : UICanvas
     {
         CreateButtonHeader();
         Show(true);
-        BtnEvent();
-
     }
     public override void Show(bool isShow)
     {
         base.Show(isShow);
         UpdateUI();
-
     }
     private void UpdateUI()
     {
-        CreateShot();
+        CreateItemShop(griRootShot, ShopManage.Ins.itemsShot);
+        CreateItemShop(griRootAccessory, ShopManage.Ins.itemsAccessory);
+        CreateItemShop(griRootSkin, ShopManage.Ins.itemsSkin);
+        CreateItemShop(griRootHat, ShopManage.Ins.itemsHat);
     }
-
-    public void CreateShot()
+    public void CreateItemShop(Transform TF, ShopItem[] itemsShot)
     {
-        Debug.Log("Shop Shot");
-        var items = ShopManage.Ins.itemsShot;
+        var items = itemsShot;
         if (items == null || items.Length <= 0
             || !griRootShot || !itemPB)
         {
             return;
         }
-        ClearChild();
+        foreach (Transform child in TF)
+        {
+            if (child)
+            {
+                Destroy(child.gameObject);
+            }
+        }
         for (int i = 0; i < items.Length; i++)
         {
             int idx = i;
@@ -47,27 +54,19 @@ public class ShopDialog : UICanvas
             if (item != null)
             {
                 var itemUIClone = Instantiate(itemPB, Vector3.zero, Quaternion.identity);
-                itemUIClone.transform.SetParent(griRootShot);
-                itemUIClone.UpdateUI(item, idx);
+                itemUIClone.transform.SetParent(TF);
+                itemUIClone.UpdateItemUI(item, idx);
                 if (itemUIClone.btn)
                 {
                     itemUIClone.btn.onClick.RemoveAllListeners();
                     itemUIClone.btn.onClick.AddListener(() => ItemEvent(item, idx));
                 }
             }
-
         }
-        Debug.Log("Shop Shop test");
     }
-
     public void CreateButtonHeader()
     {
-        var itemsBtnHeader = ShopManage.Ins.itemBtnHeader;
-        if (itemsBtnHeader == null || itemsBtnHeader.Length <= 0
-            || !griRootBtnHeader || !itemHeaderPB)
-        {
-            return;
-        }
+        var itemsBtnHeader = ShopManage.Ins.itemsBtnHeader;
         ClearChild();
         for (int i = 0; i < itemsBtnHeader.Length; i++)
         {
@@ -78,10 +77,12 @@ public class ShopDialog : UICanvas
                 var itemUIClone = Instantiate(itemHeaderPB, Vector3.zero, Quaternion.identity);
                 itemUIClone.transform.SetParent(griRootBtnHeader);
                 itemUIClone.UpdateUIBtnHeader(item, idx);
+                
                 if (itemUIClone.btn)
                 {
                     itemUIClone.btn.onClick.RemoveAllListeners();
-                    itemUIClone.btn.onClick.AddListener(() => BtnEvent());
+                    shops[0].SetActive(true);
+                    itemUIClone.btn.onClick.AddListener(() => BtnEvent(item));
                 }
             }
         }
@@ -89,31 +90,46 @@ public class ShopDialog : UICanvas
     public void ClearChild()
     {
         if (!griRootShot || griRootShot.childCount <= 0) return;
-        for (int i = 0; i < griRootShot.childCount; i++)
+        /*for (int i = 0; i < griRootShot.childCount; i++)
         {
             var child = griRootShot.GetChild(i);
             if (child)
             {
                 Destroy(child.gameObject);
             }
+        }*/
+        foreach (Transform child in griRootShot)
+        {
+            if (child)
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
-    void BtnEvent()
+    void BtnEvent(ShopItem item)
     {
-
-    }
-    void ItemEvent(ShopItem item, int shopItemId)
-    {
-
         if (item == null)
         {
             return;
         }
+        for (int i = 0; i < shops.Length; i++)
+        {
+            shops[i].SetActive(false);
+            if (item._index == i)
+            {
+                shops[i].SetActive(true);
+            }
+        }
+    }
+    void ItemEvent(ShopItem item, int shopItemId)
+    {
+        if (item == null) return;
         bool isUnlocked = Pref.GetBool(Constant.SKIN_PREF + shopItemId);
         if (isUnlocked)
         {
-            if (shopItemId == Pref.CurSkinId) return;
-            Pref.CurSkinId = shopItemId;
+            if (shopItemId == Pref.CurId) return;
+
+            Pref.CurId = shopItemId;
             UpdateUI();
         }
         else
@@ -122,12 +138,8 @@ public class ShopDialog : UICanvas
             {
                 Pref.Cost -= item.price;
                 Pref.SetBool(Constant.SKIN_PREF + shopItemId, true);
-                Pref.CurSkinId = shopItemId;
+                Pref.CurId = shopItemId;
                 UpdateUI();
-            }
-            else
-            {
-                
             }
         }
     }
