@@ -15,6 +15,7 @@ public class BotManager : GameUnit
     public int spawnNumberBot;
     private int _radius = 100;
     public float minDistance;
+    public Transform tfBot;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class BotManager : GameUnit
         for (int i = 0; i < totalBot; i++)
         {
             Bot bot = SimplePool.Spawn<Bot>(_botPrefab, Vector3.zero, Quaternion.identity);
+            bot.transform.SetParent(tfBot);
             bot.gameObject.SetActive(false);
             bots.Add(bot);
         }

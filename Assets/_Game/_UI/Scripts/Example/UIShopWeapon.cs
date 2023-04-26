@@ -7,6 +7,7 @@ public class UIShopWeapon : UICanvas
 {
     public void ButtonQuit()
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         CloseDirectly();
         UIManager.Ins.OpenUI<MainMenu>();
         GameManager.Ins.UIMainMenu();

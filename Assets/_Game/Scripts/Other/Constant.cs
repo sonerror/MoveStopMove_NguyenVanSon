@@ -21,4 +21,13 @@ public class Constant
     public static string SELECT_WEAPON = "SelectWeapon";
     public static string CUR_BTN_ID = "cur_btn_id";
     public static string BTN_PREF = "btn_";
+
+
+    public static string SOUND_BUTTON = "SoundButton";
+    public static string SOUND_WIN = "SoundWin";
+    public static string SOUND_LOSE = "SoundLose";
+    public static string SOUND_THROW = "SoundThrow";
+    public static string SOUND_COLLIDE = "SoundCollide";
+    public static string SOUND_CICK = "SoundClick";
+
 }

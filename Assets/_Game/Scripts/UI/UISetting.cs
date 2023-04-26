@@ -8,11 +8,13 @@ public class UISetting : UICanvas
 {
     public void ButtonHome()
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         CloseDirectly();
     }
     public void ButtonContinue()
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         CloseDirectly();
         GameManager.Ins.WaitGame();
     }

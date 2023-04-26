@@ -14,7 +14,7 @@ public class Character : GameUnit
     [SerializeField] public Transform _weaponTransform;
     [SerializeField] public int _indexWeapon = 0;
     private GameObject modelWeapon;
-
+    private string _charName = "Name";
     public GameObject _modelPant;
 
     public GameObject[] _hatTypes;
@@ -130,12 +130,10 @@ public class Character : GameUnit
             Vector3 direction = GetDirectionTaget();
             direction.y = 0f;
             TF.rotation = Quaternion.LookRotation(direction);
-
         }
     }
     public virtual void SpawnWeapon()
     {
-
         Vector3 target = GetClosestTarget();
         if (this._listTarget.Count > 0)
         {
@@ -151,6 +149,11 @@ public class Character : GameUnit
             }
         }
     }
+    public string GetName()
+    {
+        return _charName;
+    }
+
     public virtual void OnDead()
     {
         ChangeAnim(Constant.ANIM_DEAD);

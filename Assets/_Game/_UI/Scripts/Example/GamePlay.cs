@@ -31,6 +31,7 @@ namespace UIExample
 
         public void SettingButton()
         {
+            SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
             Time.timeScale = 0.0f;
             UIManager.Ins.OpenUI<UISetting>();
         }

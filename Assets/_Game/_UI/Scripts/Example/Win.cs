@@ -8,8 +8,13 @@ namespace UIExample
 {
     public class Win : UICanvas
     {
+        private void Awake()
+        {
+            SoundManager.Ins.SfxPlay(Constant.SOUND_WIN);
+        }
         public void ResetGame()
         {
+            SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         public void QuitGame()

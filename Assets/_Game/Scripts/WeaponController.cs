@@ -17,9 +17,9 @@ public class WeaponController : GameUnit
     {
         SimplePool.Despawn(this);
     }
-
     private void OnTriggerEnter(Collider other)
     {
+        //SoundManager.Ins.SfxPlay(Constant.SOUND_COLLIDE);
         if (other.CompareTag(Constant.TAG_CHARACTER) && other.GetComponent<Character>() != _character)
         {
             OnDespawn();

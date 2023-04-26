@@ -4,11 +4,17 @@ using UIExample;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UILoss : UICanvas
+public class UILose : UICanvas
 {
+    private void Start()
+    {
+        SoundManager.Ins.sfxSource.Stop();
+        SoundManager.Ins.SfxPlay(Constant.SOUND_LOSE);
+    }
 
     public void MenuButton()
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         UIManager.Ins.OpenUI<MainMenu>();
         this.CloseDirectly();
         ResetGame();

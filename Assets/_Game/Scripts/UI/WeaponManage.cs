@@ -43,6 +43,7 @@ public class WeaponManage : MonoBehaviour
     }
     public void ChangeNext()
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         weaponModels[currentWeaponIndex].SetActive(false);
         currentWeaponIndex++;
         if (currentWeaponIndex == weaponModels.Length)
@@ -59,6 +60,7 @@ public class WeaponManage : MonoBehaviour
     }
     public void ChangeBack()
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         weaponModels[currentWeaponIndex].SetActive(false);
         currentWeaponIndex--;
         if (currentWeaponIndex == -1)
@@ -75,6 +77,7 @@ public class WeaponManage : MonoBehaviour
     }
     public void UnLockWeapon()
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         WeaponBluePrint c = _weapons[currentWeaponIndex];
         PlayerPrefs.SetInt(c._name, 1);
         PlayerPrefs.SetInt(Constant.SELECT_WEAPON, currentWeaponIndex);
@@ -83,6 +86,7 @@ public class WeaponManage : MonoBehaviour
     }
     public void ButtonSelectWeapon()
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         WeaponBluePrint c = _weapons[currentWeaponIndex];
         Debug.Log(c._index);
         LevelManager.instance.player.ChangeWeapon(c._index);

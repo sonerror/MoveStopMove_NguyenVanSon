@@ -9,14 +9,16 @@ public class Player : Character
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _rotateSpeed;
-    public static Player Instance { get; private set; }
 
-    public bool _isMove;
-    public bool _isCanAttack;
 
     private float _timeRate = 1f;
     private float _time = 0f;
 
+
+    public static Player Instance { get; private set; }
+    public const string PLAYER_NAME_DEFAULT = "You";
+    public bool _isMove;
+    public bool _isCanAttack;
     public bool move = true;
 
     void Start()
@@ -65,7 +67,6 @@ public class Player : Character
     void FixedUpdate()
     {
         Move();
-        //PlayerDead();
     }
 
     private void Move()
@@ -110,10 +111,10 @@ public class Player : Character
     IEnumerator DoSpawnWeapon()
     {
         float timerate = 0.4f;
-        float _time_2 = 0;
-        while (_time_2 < timerate)
+        float time = 0;
+        while (time < timerate)
         {
-            _time_2 += Time.deltaTime;
+            time += Time.deltaTime;
             yield return null;
             if (Input.GetMouseButton(0))
             {
@@ -127,6 +128,7 @@ public class Player : Character
     public override void SpawnWeapon()
     {
         base.SpawnWeapon();
+        SoundManager.Ins.SfxPlay(Constant.SOUND_THROW);
     }
     public override void ChangeWeapon(int index)
     {
@@ -144,6 +146,6 @@ public class Player : Character
         move = false;
         LevelManager.instance.RemoveTarget(this);
         UIManager.Ins.OpenUI<GamePlay>().CloseDirectly();
-        UIManager.Ins.OpenUI<UILoss>();
+        UIManager.Ins.OpenUI<UILose>();
     }
 }

@@ -108,6 +108,7 @@ public class ShopDialog : UICanvas
     }
     void BtnEvent(ShopItem item)
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         if (item == null)
         {
             return;
@@ -123,6 +124,7 @@ public class ShopDialog : UICanvas
     }
     void ItemEvent(ShopItem item, int shopItemId)
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         if (item == null) return;
         bool isUnlocked = Pref.GetBool(Constant.SKIN_PREF + shopItemId);
         if (isUnlocked)
@@ -145,6 +147,7 @@ public class ShopDialog : UICanvas
     }
     public void ButtonQuit()
     {
+        SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         CloseDirectly();
         UIManager.Ins.OpenUI<MainMenu>();
         GameManager.Ins.UIMainMenu();
