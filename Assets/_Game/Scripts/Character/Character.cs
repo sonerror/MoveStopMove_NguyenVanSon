@@ -14,11 +14,9 @@ public class Character : GameUnit
     [SerializeField] public Transform _weaponTransform;
     [SerializeField] public int _indexWeapon = 0;
     private GameObject modelWeapon;
-    private string _charName = "Name";
     public GameObject _modelPant;
 
-    public GameObject[] _hatTypes;
-    public GameObject _hatType;
+    private GameObject _hatType;
     public Transform _hatTransform;
 
     public float _rangeAttack = 5f;
@@ -26,6 +24,8 @@ public class Character : GameUnit
 
     string _currentAnim;
     private float _multiplier = 1.0f;
+    private float _sizeDelta = 0.025f;
+    private int _charLevel = 1;
 
     public bool _isDead { get; set; }
 
@@ -33,8 +33,6 @@ public class Character : GameUnit
     public virtual void OnInit()
     {
         _isDead = false;
-       // ChangePant();
-        //ChangeAccessory();
     }
     public void OnEnableWeapon(WeaponType weaponType)
     {
@@ -149,11 +147,6 @@ public class Character : GameUnit
             }
         }
     }
-    public string GetName()
-    {
-        return _charName;
-    }
-
     public virtual void OnDead()
     {
         ChangeAnim(Constant.ANIM_DEAD);
@@ -166,23 +159,24 @@ public class Character : GameUnit
     {
         return _multiplier;
     }
-    public virtual void ChangeAccessory()
+    public virtual void ChangeAccessory(int index)
     {
-        int index;
-        index = UnityEngine.Random.Range(0,ShopManage.Ins._pantTypes.Length);
         if (_hatType != null)
         {
             Destroy(_hatType);
         }
-        _hatType = Instantiate(_hatTypes[_hatTypes.Length - 1]);
+        _hatType = Instantiate(ShopManage.Ins._hair[index],Vector3.zero,Quaternion.identity);
         _hatType.transform.SetParent(_hatTransform, false);
     }
 
-    public virtual void ChangePant()
+    public virtual void ChangePant(int index)
     {
-        int index;
-        index = UnityEngine.Random.Range(0, ShopManage.Ins._pantTypes.Length);
         _modelPant.transform.GetComponent<Renderer>().material = ShopManage.Ins._pantTypes[index];
+    }
+    private void ChangeSize()
+    {
+        _multiplier = 1.0f + _sizeDelta * (_charLevel - 1);
+        transform.localScale = Vector3.one * _multiplier;
     }
     public virtual void ChangeWeapon(int index)
     {

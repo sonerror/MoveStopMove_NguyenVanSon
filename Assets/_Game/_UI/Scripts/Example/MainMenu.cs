@@ -39,11 +39,11 @@ namespace UIExample
             GameManager.Ins.UIShopWeapon();
             CloseDirectly();
         }
-
         public void SetName()
         {
-            PlayerPrefs.SetString("NamePlayer", inputField.text);
-            CanvasNameOnUI.Ins.NamePlayer();
+            PlayerPrefs.SetString(Constant.NAME_PLAYER_PREF, inputField.text);
+            PlayerPrefs.Save();
+            NamePlayer.Ins.SetNamePlayer();
         }
     }
 }

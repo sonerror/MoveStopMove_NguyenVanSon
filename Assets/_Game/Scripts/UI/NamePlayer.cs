@@ -3,30 +3,16 @@ using System.Collections.Generic;
 using TMPro;
 using UIExample;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class CanvasNameOnUI : MonoBehaviour
+public class NamePlayer : Singleton<NamePlayer>
 {
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private Transform targetTransform;
     [SerializeField] private TextMeshProUGUI tmp;
-
     [SerializeField] private Vector3 offset;
     [SerializeField] private float speed;
     private Vector3 targetPosition;
-    public string nameString;
-
-    private void Start()
-    {
-        Bot bot = targetTransform.GetComponent<Bot>();
-        if (bot != null)
-        {
-            nameString = BotNamePool.instance.nameList[(int)Random.Range(0, BotNamePool.instance.nameList.Count)];
-            tmp.text = nameString;
-            
-        }
-    }
-
+    
     void LateUpdate()
     {
         targetPosition = Camera.main.WorldToScreenPoint(targetTransform.position + offset);
@@ -35,5 +21,17 @@ public class CanvasNameOnUI : MonoBehaviour
     public void SetTargetTransform(Transform targetTF)
     {
         targetTransform = targetTF;
+    }
+    public void SetNamePlayer()
+    {
+        string namePlayer = PlayerPrefs.GetString(Constant.NAME_PLAYER_PREF);
+        if(tmp.text == null)
+        {
+            tmp.text = Constant.PLAYER_NAME_DEFAULT;
+        }
+        else
+        {
+            tmp.text = namePlayer;
+        }
     }
 }

@@ -59,8 +59,8 @@ namespace UIExample
         }
         public void SkinActive()
         {
-            int newSkinPb = ShopManage.Ins.itemsShot[Pref.CurId]._index;
-            LevelManager.instance.player.ChangePantFormShop(newSkinPb);
+            int index = ShopManage.Ins.itemsShot[Pref.CurId]._index;
+            LevelManager.instance.player.ChangePant(index);
         }
         public void UICoins()
         {

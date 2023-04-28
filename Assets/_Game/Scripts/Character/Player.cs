@@ -6,17 +6,15 @@ using UnityEngine;
 
 public class Player : Character
 {
+    [Header("Player class:")]
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _rotateSpeed;
 
-
     private float _timeRate = 1f;
     private float _time = 0f;
 
-
     public static Player Instance { get; private set; }
-    public const string PLAYER_NAME_DEFAULT = "You";
     public bool _isMove;
     public bool _isCanAttack;
     public bool move = true;
@@ -136,9 +134,14 @@ public class Player : Character
         _weaponType = ShopManage.Ins._weaponTypes[index];
         OnEnableWeapon(_weaponType);
     }
-    public void ChangePantFormShop(int index)
+    public override void ChangePant(int index)
     {
-        _modelPant.transform.GetComponent<Renderer>().material = ShopManage.Ins._pantTypes[index];
+        base.ChangePant(index);
+    }
+    public override void ChangeAccessory(int index)
+    {
+        base.ChangeAccessory(index);
+
     }
     public override void OnDead()
     {

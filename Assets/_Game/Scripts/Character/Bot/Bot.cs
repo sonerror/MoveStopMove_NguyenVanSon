@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Bot : Character
 {
+    [Header("Bot class:")]
     private IState<Bot> currentState;
     private float _timer;
     public NavMeshAgent agent;
@@ -29,7 +31,8 @@ public class Bot : Character
         agent = GetComponent<NavMeshAgent>();
         ChangeState(new IdleState());
         ChangeWeapon(_indexWeapon);
-        ChangePant();
+        ChangePantFormIdex();
+        ChangeAccessoryFormIndex();
     }
     public override void ChangeWeapon(int index)
     {
@@ -38,10 +41,24 @@ public class Bot : Character
         _weaponType = ShopManage.Ins._weaponTypes[index];
         OnEnableWeapon(_weaponType);
     }
-    public override void ChangePant()
+    public override void ChangePant(int index)
     {
-        base.ChangePant();
-
+        base.ChangePant(index);
+    }
+    void ChangePantFormIdex()
+    {
+        int index = Random.Range(0, ShopManage.Ins.itemsShot.Length);
+        ChangePant(index);
+    }
+    public override void ChangeAccessory(int index)
+    {
+        base.ChangeAccessory(index);
+        
+    }
+    void ChangeAccessoryFormIndex()
+    {
+        int index = Random.Range(0, ShopManage.Ins._hair.Length);
+        ChangeAccessory(index);
     }
     public void ChangeState(IState<Bot> state)
     {

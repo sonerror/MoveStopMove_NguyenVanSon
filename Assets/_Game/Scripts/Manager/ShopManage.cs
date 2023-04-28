@@ -12,6 +12,7 @@ public class ShopManage : Singleton<ShopManage>
     public ShopItem[] itemsHat;
     [SerializeField] public WeaponType[] _weaponTypes;
     [SerializeField] public Material[] _pantTypes;
+    [SerializeField] public GameObject[] _hair;
     private void Start()
     {
         Shot();
