@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457198e932cb32a4dbbd238c0b7a5c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 9
+  poolType: 8
   moveSpeed: 5
   _character: {fileID: 0}
   _isUpdatePosition: 0

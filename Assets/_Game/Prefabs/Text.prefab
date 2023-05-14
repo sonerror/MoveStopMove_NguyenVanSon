@@ -148,12 +148,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b607107901da643b0f6b9cb8fd27d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolType: 40
   rectTransform: {fileID: 7625400176105067193}
   targetTransform: {fileID: 1804043513274418310, guid: 26ea326ba29e50640b91a44b50c32570, type: 3}
   tmp: {fileID: 15682168894326106}
   offset: {x: 0, y: 3, z: 1}
   speed: 100
   nameString: 
+  numberLevel: {fileID: 6160431159525109504}
 --- !u!1 &7705774100646748302
 GameObject:
   m_ObjectHideFlags: 0

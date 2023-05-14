@@ -6,12 +6,11 @@ using UnityEngine;
 
 public class DeadState : IState<Bot>
 {
-    float timer;
+    float timer = 0f;
     float time;
     public void OnEnter(Bot bot)
     {
-        time = 0.1f;
-        timer = 3.1f;
+        timer = 2f;
         bot.OnDead();
         bot._isCanMove = false;
     }
@@ -19,23 +18,24 @@ public class DeadState : IState<Bot>
     public void OnExecute(Bot bot)
     {
         time += Time.deltaTime;
-        if (time >= timer)
+        if (time > timer)
         {
             bot._isDead = true;
             bot.ChangeState(new IdleState());
             SimplePool.Despawn(bot);
-            LevelManager.instance.alive--;
-            if (LevelManager.instance.alive > BotManager.instance.spawnNumberBot)
+            LevelManager.Ins.alive--;
+            if (LevelManager.Ins.alive > BotManager.instance.realBot)
             {
                 BotManager.instance.StartCoroutine(BotManager.instance.CoroutineSpawnBot());
             }
-            if (LevelManager.instance.alive == 1)
+            if (LevelManager.Ins.alive == 1 && LevelManager.Ins.player._isDead != true)
             {
-                UIManager.Ins.OpenUI<Win>();
-                UIManager.Ins.OpenUI<GamePlay>().CloseDirectly();
+                UIManager.Ins.OpenUI<UIWin>();
+                UIManager.Ins.OpenUI<UIGamePlay>().CloseDirectly();
             }
-            BotManager.instance.DespawnNameBot(bot);
             BotManager.instance.bots.Remove(bot);
+            LevelManager.Ins.characterList.Remove(bot);
+            BotManager.instance.DespawnNameBot(bot);
             time = 0;
         }
     }

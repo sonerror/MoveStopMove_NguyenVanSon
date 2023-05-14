@@ -8,9 +8,9 @@ public class IdleState : IState<Bot>
     float timer;
     float time = 0f;
     float durationTimeAttack = 1.1f;
-    public void OnEnter(Bot bot)
+    public void OnEnter(Bot t)
     {
-        bot.ChangeAnim(Constant.ANIM_IDLE);
+        t.ChangeAnim(Constant.ANIM_IDLE);
     }
 
     public void OnExecute(Bot bot)

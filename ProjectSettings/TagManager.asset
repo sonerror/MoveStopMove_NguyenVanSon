@@ -9,6 +9,7 @@ TagManager:
   - Bot
   - Bullet
   - Zone
+  - Wall
   layers:
   - Default
   - TransparentFX

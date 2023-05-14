@@ -99,39 +99,17 @@ MonoBehaviour:
   _animator: {fileID: 4363411747632616269}
   mask: {fileID: 1715679008162668008}
   _listTarget: []
-  _weaponTypes: []
   _weaponType: {fileID: 11400000, guid: 73964e3dd09825a41aa330367b3f70ed, type: 2}
   _weaponTransform: {fileID: 1692584707258548335}
-  _indexWeapon: 0
-  _pantTypes:
-  - {fileID: 2100000, guid: 9c9d239ac585d4e4cb62fde5cc8a811a, type: 2}
-  - {fileID: 2100000, guid: a0d8ffcb66938b448bf52382bfe14caf, type: 2}
-  - {fileID: 2100000, guid: da857808eaa551d4cbe236be2e034416, type: 2}
-  - {fileID: 2100000, guid: e5421929f57ab694ba8ec1e52848616e, type: 2}
-  - {fileID: 2100000, guid: 6eb925d2fac49af4eb27177efebaa271, type: 2}
-  - {fileID: 2100000, guid: 3e8d152e0a8225b408ee3fd378e7cddf, type: 2}
-  - {fileID: 2100000, guid: 6e448cabf9ed32f438787bb00fb048a9, type: 2}
-  - {fileID: 2100000, guid: d5a0a4ab3c771c54f8ed5453907e04d9, type: 2}
-  - {fileID: 2100000, guid: 67e870cdbb84e4c478c9d443642cb7f2, type: 2}
+  _indexWeapon: 2
   _modelPant: {fileID: 5524120671900645187}
-  _hatTypes:
-  - {fileID: -927199367670048503, guid: b535a5d9e925da743af04915aebb5351, type: 3}
-  - {fileID: -927199367670048503, guid: 3f3354853558ea744a2797089733af2f, type: 3}
-  - {fileID: -927199367670048503, guid: c7b1e814e40b3584db8379f612c1578e, type: 3}
-  - {fileID: -927199367670048503, guid: 04aebbebac684444abecd94a90d29bec, type: 3}
-  - {fileID: -927199367670048503, guid: 1cbe8dd584db7ef4cb4e664ac67b61e6, type: 3}
-  - {fileID: -927199367670048503, guid: 7d22ba4646139ed499c8d6f6cba73b3e, type: 3}
-  - {fileID: -927199367670048503, guid: 4a583de8669a1a4488b2564cbb6edbd8, type: 3}
-  - {fileID: -927199367670048503, guid: 631dc824c667e2141af72f923cc34829, type: 3}
-  - {fileID: -927199367670048503, guid: 7143f17d4a7fe66449b69bfd7b67c441, type: 3}
-  _hatType: {fileID: 0}
   _hatTransform: {fileID: 1918585434793673778}
-  _rangeAttack: 5
+  attRange: 5
+  size: 1
   _rb: {fileID: 1692584707966852558}
   _moveSpeed: 5
-  _rotateSpeed: 4
+  _rotateSpeed: 90
   _isMove: 0
-  _isCanAttack: 0
   move: 1
 --- !u!136 &1692584707966852557
 CapsuleCollider:
@@ -143,10 +121,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.28140774
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0.01819858, y: 1, z: 0}
 --- !u!1 &1715679008162668008
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918585434793673781}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.028, y: 0.692, z: 0.007}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4467792314692278464}

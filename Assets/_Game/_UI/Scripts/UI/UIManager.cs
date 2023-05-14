@@ -34,6 +34,8 @@ public class UIManager : UIExample.Singleton<UIManager>
     //list load ui resource
     private UICanvas[] uiResources;
 
+    public int numberLevel = 0;
+
     //dict for UI active
     //dict luu cac ui dang dung
     private Dictionary<System.Type, UICanvas> uiCanvas = new Dictionary<System.Type, UICanvas>();

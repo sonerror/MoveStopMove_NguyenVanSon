@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BotNamePool : MonoBehaviour
@@ -16,7 +17,7 @@ public class BotNamePool : MonoBehaviour
     }
     void Start()
     {
-        for (int i = 0; i < LevelManager.instance.alive; i++)
+        for (int i = 0; i < LevelManager.Ins.alive; i++)
         {
             GameObject obj = Instantiate(botNamePrefab);
             obj.transform.SetParent(canvas.gameObject.transform);
@@ -24,7 +25,6 @@ public class BotNamePool : MonoBehaviour
             poolLists.Add(obj);
         }
     }
-
     public GameObject GetObject()
     {
         foreach (GameObject obj in poolLists)
@@ -40,9 +40,15 @@ public class BotNamePool : MonoBehaviour
         poolLists.Add(newObj);
         return newObj;
     }
-
     public void ReturnToPool(GameObject obj)
     {
-        obj.SetActive(false);
+       obj.SetActive(false);
+    }
+    public void ClearNameBot()
+    {
+        foreach(GameObject obj in poolLists)
+        {
+            obj.SetActive(false);
+        }
     }
 }

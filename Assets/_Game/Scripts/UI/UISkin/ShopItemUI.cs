@@ -13,7 +13,7 @@ public class ShopItemUI : MonoBehaviour
 
         if(hub)
             hub.sprite = item.hub;
-        bool isUnlocked = Pref.GetBool(Constant.SKIN_PREF + shopItemId);
+        bool isUnlocked = Pref.GetBool(Pref.SKIN_PREF + shopItemId);
         if(isUnlocked)
         {
             if(shopItemId == Pref.CurId)

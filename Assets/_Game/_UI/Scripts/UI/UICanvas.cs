@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UICanvas : MonoBehaviour
 {
-    //public bool IsAvoidBackKey = false;
     public bool IsDestroyOnClose = false;
 
     protected RectTransform m_RectTransform;

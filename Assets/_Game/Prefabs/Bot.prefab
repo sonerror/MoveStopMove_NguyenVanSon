@@ -508,10 +508,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2947122
-  m_Height: 1.7540269
+  m_Radius: 0.4249004
+  m_Height: 2.2545664
   m_Direction: 1
-  m_Center: {x: 0.034977794, y: 0.86410713, z: -0.07148337}
+  m_Center: {x: 0.069863796, y: 1.1143769, z: -0.030942798}
 --- !u!195 &6517497893231734086
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -522,7 +522,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -555,7 +555,8 @@ MonoBehaviour:
   _indexWeapon: 0
   _modelPant: {fileID: 551460485827546610}
   _hatTransform: {fileID: 7058934047987722975}
-  _rangeAttack: 5
+  attRange: 5
+  size: 1
   agent: {fileID: 6517497893231734086}
   range: 5
   _wanderRadius: 1000

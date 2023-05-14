@@ -9,11 +9,12 @@ public class Bot : Character
     [Header("Bot class:")]
     private IState<Bot> currentState;
     private float _timer;
-    public NavMeshAgent agent;
+
+    [SerializeField] public NavMeshAgent agent;
     public float range;
     public float _wanderRadius;
     public float _wanderTimer;
-    Vector3 nextPoint;
+    private Vector3 nextPoint;
     public bool _isCanMove;
     public GameObject botName;
 
@@ -28,7 +29,6 @@ public class Bot : Character
     public override void OnInit()
     {
         base.OnInit();
-        agent = GetComponent<NavMeshAgent>();
         ChangeState(new IdleState());
         ChangeWeapon(_indexWeapon);
         ChangePantFormIdex();
@@ -59,6 +59,28 @@ public class Bot : Character
     {
         int index = Random.Range(0, ShopManage.Ins._hair.Length);
         ChangeAccessory(index);
+    }
+    public IEnumerator DoAttack()
+    {
+        OnAttack();
+        float time = 0;
+        float timer = 1.11f;
+        while (time < timer)
+        {
+            time += Time.deltaTime;
+
+            yield return null;
+        }
+        int numRand = Random.Range(0,5);
+        if (numRand == 3)
+        {
+            ChangeState(new IdleState());
+        }
+        else
+        {
+            ChangeState(new PatrolState());
+        }
+        yield return null;
     }
     public void ChangeState(IState<Bot> state)
     {
@@ -97,6 +119,13 @@ public class Bot : Character
     {
         agent.enabled = false;
     }
+    public override void OnDespawn()
+    {
+        base.OnDespawn();
+        this._isDead = false;
+        SimplePool.Despawn(this);
+        CancelInvoke();
+    }
     bool IsDestination() => Vector3.Distance(transform.position, nextPoint) - Mathf.Abs(transform.position.y - nextPoint.y) < 0.1f;
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
@@ -112,6 +141,6 @@ public class Bot : Character
         base.OnDead();
         OnMoveStop();
         SetMask(false);
-        LevelManager.instance.RemoveTarget(this);
+        LevelManager.Ins.RemoveTarget(this);
     }
 }

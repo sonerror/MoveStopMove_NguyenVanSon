@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class Player : Character
 {
-    [Header("Player class:")]
+    [Header("=======Player class=======")]
     [SerializeField] private Rigidbody _rb;
-    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] public float _moveSpeed = 5f;
     [SerializeField] private float _rotateSpeed;
 
     private float _timeRate = 1f;
@@ -16,15 +16,14 @@ public class Player : Character
 
     public static Player Instance { get; private set; }
     public bool _isMove;
-    public bool _isCanAttack;
     public bool move = true;
 
     void Start()
     {
-
         OnEnableWeapon(_weaponType);
         _isDead = false;
         ChangeAnim(Constant.ANIM_IDLE);
+        LevelManager.Ins.RemoveTarget(this);
     }
 
     private void Update()
@@ -36,7 +35,7 @@ public class Player : Character
         _time += Time.deltaTime;
         if (!this._isDead)
         {
-            if (LevelManager.instance.alive == 1)
+            if (LevelManager.Ins.alive == 1)
             {
                 ChangeAnim(Constant.ANIM_VICTORY);
                 return;
@@ -110,18 +109,29 @@ public class Player : Character
     {
         float timerate = 0.4f;
         float time = 0;
-        while (time < timerate)
+        bool mouseClicked = false;
+        while (time < timerate && !mouseClicked)
         {
             time += Time.deltaTime;
             yield return null;
             if (Input.GetMouseButton(0))
             {
-                goto Lable;
+                mouseClicked = true;
             }
         }
-        SpawnWeapon();
-    Lable:
-        yield return null;
+        if (mouseClicked)
+        {
+            yield return null;
+        }
+        else
+        {
+            SpawnWeapon();
+        }
+    }
+    private void ResetPosition()
+    {
+        TF.position = Vector3.zero;
+        TF.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
     }
     public override void SpawnWeapon()
     {
@@ -147,8 +157,22 @@ public class Player : Character
     {
         base.OnDead();
         move = false;
-        LevelManager.instance.RemoveTarget(this);
-        UIManager.Ins.OpenUI<GamePlay>().CloseDirectly();
+        LevelManager.Ins.RemoveTarget(this);
+        UIManager.Ins.OpenUI<UIGamePlay>().CloseDirectly();
         UIManager.Ins.OpenUI<UILose>();
+    }
+    public override void ChangeSize(float size)
+    {
+        base.ChangeSize(size);
+        this.attRange += 0.2f;
+    }
+    public void OnRevive()
+    {
+        base.OnInit();
+        ResetPosition();
+        this.ChangeSize(1);
+        _isDead = false;
+        attRange = 5f;
+        _moveSpeed = 5f;
     }
 }

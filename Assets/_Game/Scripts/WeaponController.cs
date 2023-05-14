@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponController : GameUnit
 {
-    [SerializeField] protected float moveSpeed = 5f;
+    [SerializeField] protected float weaponMoveSpeed = 5f;
     [SerializeField] protected Character _character;
     public bool _isUpdatePosition = false;
 
@@ -17,15 +17,34 @@ public class WeaponController : GameUnit
     {
         SimplePool.Despawn(this);
     }
+    private void WeaponStop()
+    {
+        weaponMoveSpeed = 0f;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        //SoundManager.Ins.SfxPlay(Constant.SOUND_COLLIDE);
+        if(other.CompareTag(Constant.TAG_WALL))
+        {
+            WeaponStop();
+        }
         if (other.CompareTag(Constant.TAG_CHARACTER) && other.GetComponent<Character>() != _character)
         {
             OnDespawn();
             other.GetComponent<Character>()._isDead = true;
             _character.RemoveTarget(other.GetComponent<Character>());
             _isUpdatePosition = false;
+            if (_character is Player)
+            {
+                LevelManager.Ins.player.ChangeSize(LevelManager.Ins.player.size + 0.1f);
+                weaponMoveSpeed += 0.25f;
+                LevelManager.Ins.player._moveSpeed += 0.1f;
+                SoundManager.Ins.SfxPlay(Constant.SOUND_SIZE_UP);
+                UIManager.Ins.numberLevel += 1;
+            }
+            else
+            {
+                _character.ChangeSize(_character.size + 0.1f);
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ using UIExample;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanvasNameOnUI : MonoBehaviour
+public class CanvasNameBotsUI : GameUnit
 {
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private Transform targetTransform;
@@ -15,6 +15,7 @@ public class CanvasNameOnUI : MonoBehaviour
     [SerializeField] private float speed;
     private Vector3 targetPosition;
     public string nameString;
+    public Text numberLevel;
 
     private void Start()
     {
@@ -23,8 +24,12 @@ public class CanvasNameOnUI : MonoBehaviour
         {
             nameString = BotNamePool.instance.nameList[(int)Random.Range(0, BotNamePool.instance.nameList.Count)];
             tmp.text = nameString;
-            
         }
+    }
+    private void FixedUpdate()
+    {
+        int levelBot = UIManager.Ins.numberLevel + 1;
+        numberLevel.text = levelBot.ToString();
     }
 
     void LateUpdate()

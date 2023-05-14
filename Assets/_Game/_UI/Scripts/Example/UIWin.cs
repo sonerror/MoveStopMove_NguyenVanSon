@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 namespace UIExample
 {
-    public class Win : UICanvas
+    public class UIWin : UICanvas
     {
-        private void Awake()
+        private void Start()
         {
             SoundManager.Ins.SfxPlay(Constant.SOUND_WIN);
+            GameManager.Ins.UIMainMenu();
+            Pref.Cost += 50;
         }
         public void ResetGame()
         {
@@ -28,7 +30,7 @@ namespace UIExample
         }
         public void NextLevelButton()
         {
-
+            LevelManager.Ins.NextLevelGame();
         }
     }
 }

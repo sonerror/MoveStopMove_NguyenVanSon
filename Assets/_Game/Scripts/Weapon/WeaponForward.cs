@@ -22,10 +22,10 @@ public class WeaponForward : WeaponController
             _isUpdatePosition = true;
         }
 
-        if (Vector3.Distance(transform.position, currentPostion) < _character._rangeAttack)
+        if (Vector3.Distance(transform.position, currentPostion) < _character.attRange)
         {
             transform.forward = new Vector3(transform.forward.x, 0, transform.forward.z);
-            transform.Translate(transform.forward * moveSpeed * Time.deltaTime, Space.World);
+            transform.Translate(transform.forward * weaponMoveSpeed * Time.deltaTime, Space.World);
         }
         else
         {

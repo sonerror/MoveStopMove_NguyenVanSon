@@ -42,15 +42,4 @@ public class ChangeColorObject : MonoBehaviour
     {
         _material.color = Color.Lerp(_transparentColor, _color, 1f);
     }
-    void Update()
-    {
-        if (isBlocked)
-        {
-            // Đặt hành động khi bị cản lại ở đây
-        }
-        else
-        {
-            // Đặt hành động khi không bị cản lại ở đây
-        }
-    }
 }

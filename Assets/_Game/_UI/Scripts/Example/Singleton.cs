@@ -18,7 +18,7 @@ namespace UIExample
                     // Find singleton
                     m_Ins = FindObjectOfType<T>();
 
-                    // Create new instance if one doesn't already exist.
+                    // Create new Ins if one doesn't already exist.
                     if (m_Ins == null)
                     {
                         // Need to create a new GameObject to attach the singleton to.

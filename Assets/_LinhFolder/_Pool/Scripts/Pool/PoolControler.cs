@@ -61,17 +61,17 @@ public class PoolControlerEditor : Editor
                 {
                     Transform tf = new GameObject(pool.Pool[i].prefab.poolType.ToString()).transform;
                     tf.parent = pool.transform;
-                    pool.Pool[i].root = tf; 
+                    pool.Pool[i].root = tf;
                 }
             }
-            
+
             for (int i = 0; i < pool.Particle.Length; i++)
             {
                 if (pool.Particle[i].root == null)
                 {
                     Transform tf = new GameObject(pool.Particle[i].particleType.ToString()).transform;
                     tf.parent = pool.transform;
-                    pool.Particle[i].root = tf; 
+                    pool.Particle[i].root = tf;
                 }
             }
         }
@@ -116,7 +116,7 @@ public class PoolAmount
     public int amount;
     public bool collect;
 
-    public PoolAmount (Transform root, GameUnit prefab, int amount, bool collect)
+    public PoolAmount(Transform root, GameUnit prefab, int amount, bool collect)
     {
         this.root = root;
         this.prefab = prefab;
@@ -152,7 +152,7 @@ public enum PoolType
     None,
 
     Bot,
-    BotName,
+
     W_Hammer_1,
     W_Hammer_2,
     W_Hammer_3,
@@ -196,6 +196,14 @@ public enum PoolType
     ACC_Shield,
 
     TargetIndicator,
+    BotName,
+
+    Map_1,
+    Map_2,
+    Map_3,
+    Map_4,
+    Map_5,
+
 }
 
 

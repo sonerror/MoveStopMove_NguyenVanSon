@@ -30,13 +30,13 @@ public class ShopManage : Singleton<ShopManage>
             {
                 if (i == 0)
                 {
-                    Pref.SetBool(Constant.BTN_PREF + i, true);
+                    Pref.SetBool(Pref.BTN_PREF + i, true);
                 }
                 else
                 {
-                    if (!PlayerPrefs.HasKey(Constant.BTN_PREF + i))
+                    if (!PlayerPrefs.HasKey(Pref.BTN_PREF + i))
                     {
-                        Pref.SetBool(Constant.BTN_PREF + i, false);
+                        Pref.SetBool(Pref.BTN_PREF + i, false);
                     }
                 }
             }
@@ -54,13 +54,13 @@ public class ShopManage : Singleton<ShopManage>
             {
                 if (i == 0)
                 {
-                    Pref.SetBool(Constant.SKIN_PREF + i, true);
+                    Pref.SetBool(Pref.SKIN_PREF + i, true);
                 }
                 else
                 {
-                    if (!PlayerPrefs.HasKey(Constant.SKIN_PREF + i))
+                    if (!PlayerPrefs.HasKey(Pref.SKIN_PREF + i))
                     {
-                        Pref.SetBool(Constant.SKIN_PREF + i, false);
+                        Pref.SetBool(Pref.SKIN_PREF + i, false);
                     }
                 }
             }

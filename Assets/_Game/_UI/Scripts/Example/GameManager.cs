@@ -12,7 +12,6 @@ namespace UIExample
 {
     public class GameManager : Singleton<GameManager>
     {
-        [SerializeField] private CameraFollow _cameraFollow;
         protected void Awake()
         {
             Input.multiTouchEnabled = false;
@@ -29,11 +28,11 @@ namespace UIExample
         public void Start()
         {
             WaitGame();
-           /* if(!PlayerPrefs.HasKey(Constant.COST_KEY))
-            {
-                Pref.Cost = 100;
-            }*/
-            Pref.Cost = 100;
+                if (!PlayerPrefs.HasKey(Pref.COST_KEY))
+                {
+                    Pref.Cost = 0;
+                }
+            //Pref.Cost = 100;
             UICoins();
         }
         public void Update()
@@ -47,25 +46,24 @@ namespace UIExample
         }
         public void StartGame()
         {
-            _cameraFollow.ChangeState(CameraFollow.State.GamePlay);
+            CameraFollow.Ins.ChangeState(CameraFollow.State.GamePlay);
         }
         public void UIShopWeapon()
         {
-            _cameraFollow.ChangeState(CameraFollow.State.Shop);
+            CameraFollow.Ins.ChangeState(CameraFollow.State.Shop);
         }
         public void UIMainMenu()
         {
-            _cameraFollow.ChangeState(CameraFollow.State.MainMenu);
+            CameraFollow.Ins.ChangeState(CameraFollow.State.MainMenu);
         }
         public void SkinActive()
         {
             int index = ShopManage.Ins.itemsShot[Pref.CurId]._index;
-            LevelManager.instance.player.ChangePant(index);
+            LevelManager.Ins.player.ChangePant(index);
         }
         public void UICoins()
         {
             UIManager.Ins.OpenUI<UICoins>();
         }
     }
-
 }

@@ -4,25 +4,25 @@ using UnityEngine;
 
 namespace UIExample
 {
-    public class GamePlay : UICanvas
+    public class UIGamePlay : UICanvas
     {
         private void Start()
         {
             Time.timeScale = 1f;
+            LevelManager.Ins.player.move = true;
         }
         private void Update()
         {
-            if(LevelManager.instance.alive == 1)
+            if(LevelManager.Ins.alive == 1)
             {
                 WinButton();
             }
         }
         public void WinButton()
         {
-           UIManager.Ins.OpenUI<Win>();
+           UIManager.Ins.OpenUI<UIWin>();
            CloseDirectly();
         }
-
         public void LoseButton()
         {
             UIManager.Ins.OpenUI<Lose>().score.text = Random.Range(0, 100).ToString();

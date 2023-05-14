@@ -77,7 +77,6 @@ public class ShopDialog : UICanvas
                 var itemUIClone = Instantiate(itemHeaderPB, Vector3.zero, Quaternion.identity);
                 itemUIClone.transform.SetParent(griRootBtnHeader);
                 itemUIClone.UpdateUIBtnHeader(item, idx);
-                
                 if (itemUIClone.btn)
                 {
                     itemUIClone.btn.onClick.RemoveAllListeners();
@@ -126,7 +125,7 @@ public class ShopDialog : UICanvas
     {
         SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         if (item == null) return;
-        bool isUnlocked = Pref.GetBool(Constant.SKIN_PREF + shopItemId);
+        bool isUnlocked = Pref.GetBool(Pref.SKIN_PREF + shopItemId);
         if (isUnlocked)
         {
             if (shopItemId == Pref.CurId) return;
@@ -139,7 +138,7 @@ public class ShopDialog : UICanvas
             if (Pref.Cost >= item.price)
             {
                 Pref.Cost -= item.price;
-                Pref.SetBool(Constant.SKIN_PREF + shopItemId, true);
+                Pref.SetBool(Pref.SKIN_PREF + shopItemId, true);
                 Pref.CurId = shopItemId;
                 UpdateUI();
             }

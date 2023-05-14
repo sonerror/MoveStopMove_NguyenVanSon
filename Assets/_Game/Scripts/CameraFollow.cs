@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UIExample;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : Singleton<CameraFollow>
 {
     [System.Serializable]
     public struct CameraData
@@ -27,6 +28,8 @@ public class CameraFollow : MonoBehaviour
     private Vector3 _offset;
     private Vector3 _targetEulerAngles;
     private Vector3 _eulerAngles;
+    [SerializeField] Vector3 offsetMax;
+    [SerializeField] Vector3 offsetMin;
     private void Start()
     {
         ChangeState(State.MainMenu);
@@ -47,6 +50,10 @@ public class CameraFollow : MonoBehaviour
         transform.position = _player.transform.position + _offset ;
         _eulerAngles = Vector3.Lerp(_eulerAngles,_targetEulerAngles,_lerpTime*Time.deltaTime);
         transform.rotation = Quaternion.Euler(_eulerAngles);
+    }
+    public void SetRateOffset(float rate)
+    {
+        _targetOffset = Vector3.Lerp(offsetMin, offsetMax, rate);
     }
     public void ChangeState(State _state)
     {

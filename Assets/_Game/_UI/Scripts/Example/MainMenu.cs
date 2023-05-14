@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,16 +9,18 @@ namespace UIExample
     public class MainMenu : UICanvas
     {
         public InputField inputField;
-
         private void Start()
         {
             Time.timeScale = 1.0f;
+            LevelManager.Ins.player.move = false;
+            
         }
         public void PlayButton()
         {
+            LevelManager.Ins.player.move = true;
             SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
             GameManager.Ins.StartGame();
-            UIManager.Ins.OpenUI<GamePlay>();
+            UIManager.Ins.OpenUI<UIGamePlay>();
             foreach (var item in BotManager.instance.bots)
             {
                 item._isCanMove = true;
@@ -41,7 +43,7 @@ namespace UIExample
         }
         public void SetName()
         {
-            PlayerPrefs.SetString(Constant.NAME_PLAYER_PREF, inputField.text);
+            PlayerPrefs.SetString(Pref.NAME_PLAYER_PREF, inputField.text);
             PlayerPrefs.Save();
             NamePlayer.Ins.SetNamePlayer();
         }

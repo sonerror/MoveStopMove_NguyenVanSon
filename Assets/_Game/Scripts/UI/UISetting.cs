@@ -8,15 +8,18 @@ public class UISetting : UICanvas
 {
     public void ButtonHome()
     {
+       // LevelManager.Ins.player.move = true;
+        Time.timeScale = 1.0f;
         SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LevelManager.Ins.LoseGame();
+        UIManager.Ins.OpenUI<MainMenu>();
         CloseDirectly();
     }
     public void ButtonContinue()
     {
         SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
+        Time.timeScale = 1.0f;
         CloseDirectly();
-        GameManager.Ins.WaitGame();
     }
     public void QuitGame()
     {

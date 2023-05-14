@@ -17,7 +17,7 @@ public class WeaponManage : MonoBehaviour
 
     private void Start()
     {
-        currentWeaponIndex = PlayerPrefs.GetInt(Constant.SELECT_WEAPON, 0);
+        currentWeaponIndex = PlayerPrefs.GetInt(Pref.SELECT_WEAPON, 0);
         foreach (GameObject weapon in weaponModels)
         {
             weapon.SetActive(false);
@@ -56,7 +56,7 @@ public class WeaponManage : MonoBehaviour
         {
             return;
         }
-        PlayerPrefs.SetInt(Constant.SELECT_WEAPON, currentWeaponIndex);
+        PlayerPrefs.SetInt(Pref.SELECT_WEAPON, currentWeaponIndex);
     }
     public void ChangeBack()
     {
@@ -73,14 +73,14 @@ public class WeaponManage : MonoBehaviour
         {
             return;
         }
-        PlayerPrefs.SetInt(Constant.SELECT_WEAPON, currentWeaponIndex);
+        PlayerPrefs.SetInt(Pref.SELECT_WEAPON, currentWeaponIndex);
     }
     public void UnLockWeapon()
     {
         SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         WeaponBluePrint c = _weapons[currentWeaponIndex];
         PlayerPrefs.SetInt(c._name, 1);
-        PlayerPrefs.SetInt(Constant.SELECT_WEAPON, currentWeaponIndex);
+        PlayerPrefs.SetInt(Pref.SELECT_WEAPON, currentWeaponIndex);
         c._isUnlocked = true;
         Pref.Cost -= c._price;
     }
@@ -89,7 +89,7 @@ public class WeaponManage : MonoBehaviour
         SoundManager.Ins.SfxPlay(Constant.SOUND_BUTTON);
         WeaponBluePrint c = _weapons[currentWeaponIndex];
         Debug.Log(c._index);
-        LevelManager.instance.player.ChangeWeapon(c._index);
+        LevelManager.Ins.player.ChangeWeapon(c._index);
     }
     private void UpdateUI()
     {
