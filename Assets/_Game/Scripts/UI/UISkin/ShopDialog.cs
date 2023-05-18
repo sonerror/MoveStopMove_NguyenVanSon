@@ -118,6 +118,10 @@ public class ShopDialog : UICanvas
             if (item._index == i)
             {
                 shops[i].SetActive(true);
+
+                int id = ShopManage.Ins.itemsBtnHeader[i]._index;
+                PlayerPrefs.SetInt(Pref.CUR_BTN_ID, id);
+                ShopManage.Ins.clickBtnHeader = true;
             }
         }
     }

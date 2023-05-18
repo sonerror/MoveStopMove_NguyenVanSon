@@ -148,10 +148,14 @@ public class Player : Character
     {
         base.ChangePant(index);
     }
+    public override void ChangeHair(int index)
+    {
+        base.ChangeHair(index);
+
+    }
     public override void ChangeAccessory(int index)
     {
         base.ChangeAccessory(index);
-
     }
     public override void OnDead()
     {

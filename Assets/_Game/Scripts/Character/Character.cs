@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using static UnityEditor.LightingExplorerTableColumn;
 using static UnityEngine.GraphicsBuffer;
 
 public class Character : GameUnit
@@ -18,6 +19,9 @@ public class Character : GameUnit
 
     private GameObject _hatType;
     public Transform _hatTransform;
+
+    private GameObject _accessoryType;
+    public Transform _accessoryTF;
 
     public float attRange;
 
@@ -162,7 +166,7 @@ public class Character : GameUnit
     {
         
     }
-    public virtual void ChangeAccessory(int index)
+    public virtual void ChangeHair(int index)
     {
         if (_hatType != null)
         {
@@ -176,6 +180,28 @@ public class Character : GameUnit
     {
         _modelPant.transform.GetComponent<Renderer>().material = ShopManage.Ins._pantTypes[index];
     }
+
+    public virtual void ChangeAccessory(int index)
+    {
+
+        if (_accessoryType != null)
+        {
+            Destroy(_accessoryType);
+        }
+        _accessoryType = Instantiate(ShopManage.Ins._accessory[index] ,Vector3.zero,Quaternion.identity);
+        _accessoryType.transform.SetParent(_accessoryTF, false);
+    }
+    public virtual void ChangeSkin(int index)
+    {
+
+    }
+
+
+
+
+
+
+
     public virtual void ChangeSize(float size)
     {
         size = Mathf.Clamp(size, MIN_SIZE, MAX_SIZE);

@@ -13,13 +13,6 @@ public class ShopBtnHeader : MonoBehaviour
         if (hub)
             hub.sprite = item.hub;
         bool isUnlocked = Pref.GetBool(Pref.BTN_PREF + shopItemId);
-        if (isUnlocked)
-        {
 
-        }
-        else
-        {
-
-        }
     }
 }

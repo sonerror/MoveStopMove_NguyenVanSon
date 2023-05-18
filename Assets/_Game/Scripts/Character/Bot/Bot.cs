@@ -32,6 +32,7 @@ public class Bot : Character
         ChangeState(new IdleState());
         ChangeWeapon(_indexWeapon);
         ChangePantFormIdex();
+        ChangeHairFormIndex();
         ChangeAccessoryFormIndex();
     }
     public override void ChangeWeapon(int index)
@@ -50,14 +51,26 @@ public class Bot : Character
         int index = Random.Range(0, ShopManage.Ins.itemsShot.Length);
         ChangePant(index);
     }
+    public override void ChangeHair(int index)
+    {
+        base.ChangeHair(index);
+        
+    }
+    void ChangeHairFormIndex()
+    {
+        int index = Random.Range(0, ShopManage.Ins._hair.Length);
+        ChangeHair(index);
+    }
+
+
     public override void ChangeAccessory(int index)
     {
         base.ChangeAccessory(index);
-        
+
     }
     void ChangeAccessoryFormIndex()
     {
-        int index = Random.Range(0, ShopManage.Ins._hair.Length);
+        int index = Random.Range(0,ShopManage.Ins._accessory.Length);
         ChangeAccessory(index);
     }
     public IEnumerator DoAttack()

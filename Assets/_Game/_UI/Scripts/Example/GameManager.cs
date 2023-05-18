@@ -59,7 +59,25 @@ namespace UIExample
         public void SkinActive()
         {
             int index = ShopManage.Ins.itemsShot[Pref.CurId]._index;
-            LevelManager.Ins.player.ChangePant(index);
+            int id = ShopManage.Ins.itemsBtnHeader[Pref.CurBtnId]._index;
+            bool click = ShopManage.Ins.clickBtnHeader;
+            if (id == 0 && click)
+            {
+                LevelManager.Ins.player.ChangePant(index);
+            }
+            if (id == 1 )
+            {
+                LevelManager.Ins.player.ChangeAccessory(index);
+            }
+            if (id == 2)
+            {
+                //LevelManager.Ins.player.ChangeSkin(index);
+            }
+            if (id == 3 && click)
+            {
+                
+                LevelManager.Ins.player.ChangeHair(index);
+            }
         }
         public void UICoins()
         {
