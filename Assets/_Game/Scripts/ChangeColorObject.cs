@@ -4,42 +4,27 @@ using UnityEngine;
 
 public class ChangeColorObject : MonoBehaviour
 {
-    [SerializeField] private Transform _tfZonePlayer;
-    private Material _material;
-    private Color _color;
-    private Color _transparentColor;
-    bool isBlocked = false;
+    private Color originalColor;
+    public Color highlightColor;
+
     private void Start()
     {
-        _material = GetComponent<Renderer>().material;
-        _color = _material.color;
-        _transparentColor = _material.color;
-        _transparentColor.a = 0.2f;
+        originalColor = GetComponent<Renderer>().material.color;
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.transform == _tfZonePlayer)
+        if (collision.gameObject.CompareTag(Constant.TAG_CHARACTER))
         {
-            _material.color = Color.Lerp(_color, _transparentColor, 1f);
-        }
-        if (!other.isTrigger)
-        {
-            isBlocked = true;
+            GetComponent<Renderer>().material.color = highlightColor;
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    private void OnCollisionExit(Collision collision)
     {
-        if (other.gameObject.transform == _tfZonePlayer)
+        if (collision.gameObject.CompareTag(Constant.TAG_CHARACTER))
         {
-            ChangeColorOld();
+            GetComponent<Renderer>().material.color = originalColor;
         }
-        if (!other.isTrigger)
-        {
-            isBlocked = false;
-        }
-    }
-    private void ChangeColorOld()
-    {
-        _material.color = Color.Lerp(_transparentColor, _color, 1f);
     }
 }

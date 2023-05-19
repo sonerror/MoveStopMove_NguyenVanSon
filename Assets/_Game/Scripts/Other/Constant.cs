@@ -13,7 +13,7 @@ public class Constant
     public const string TAG_BULLET = "Bullet";
     public const string TAG_ZONE = "Zone";
     public const string PLAYER_NAME_DEFAULT = "You";
-    public const string TAG_WALL = "Wall";
+    public const string TAG_CUP = "Cup";
 
     public static string SOUND_BUTTON = "SoundButton";
     public static string SOUND_WIN = "SoundWin";

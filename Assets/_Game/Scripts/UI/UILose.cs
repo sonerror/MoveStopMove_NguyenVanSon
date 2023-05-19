@@ -13,7 +13,6 @@ public class UILose : UICanvas
         SoundManager.Ins.sfxSource.Stop();
         SoundManager.Ins.SfxPlay(Constant.SOUND_LOSE);
         Pref.Cost += 10;
-        Debug.Log(LevelManager.Ins.alive);
         textAlive.text = "Số Người Còn Sống: " + LevelManager.Ins.alive.ToString();
 
     }

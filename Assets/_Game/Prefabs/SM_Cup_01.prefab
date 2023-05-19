@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3089154749339641293}
   m_Layer: 0
   m_Name: SM_Cup_01
-  m_TagString: Wall
+  m_TagString: Cup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 40
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfaa7cbe1ebdde94ba11385febc714bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tfZonePlayer: {fileID: 0}
+  highlightColor: {r: 1, g: 1, b: 1, a: 0.078431375}
 --- !u!64 &3089154749339641293
 MeshCollider:
   m_ObjectHideFlags: 0

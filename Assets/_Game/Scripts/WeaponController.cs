@@ -23,7 +23,7 @@ public class WeaponController : GameUnit
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(Constant.TAG_WALL))
+        if(other.CompareTag(Constant.TAG_CUP))
         {
             WeaponStop();
         }

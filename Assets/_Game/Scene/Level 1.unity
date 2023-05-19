@@ -345,7 +345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -33}
+  m_AnchoredPosition: {x: 0, y: -35}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &783116972
@@ -1682,6 +1682,14 @@ PrefabInstance:
       propertyPath: _accessoryTF
       value: 
       objectReference: {fileID: 1692584707572509005}
+    - target: {fileID: 1692584707966852556, guid: e4876024e64fe104ba70afa5d5a82bb2, type: 3}
+      propertyPath: _rotateSpeed
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481097048613029480, guid: e4876024e64fe104ba70afa5d5a82bb2, type: 3}
+      propertyPath: m_TagString
+      value: Zone
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4876024e64fe104ba70afa5d5a82bb2, type: 3}
 --- !u!4 &1692584707572509005 stripped
@@ -1825,7 +1833,7 @@ MonoBehaviour:
   rectTransform: {fileID: 3107553412012817080}
   targetTransform: {fileID: 1158286377}
   tmp: {fileID: 3107553412012817222}
-  offset: {x: 0, y: 2, z: 2}
+  offset: {x: 0, y: 2, z: 3}
   speed: 5
   numberLevel: {fileID: 1896464665}
 --- !u!1 &3107553412012817083
