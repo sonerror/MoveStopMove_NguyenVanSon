@@ -153,6 +153,13 @@ public enum PoolType
 
     Bot,
     Player,
+
+    W_Arrow,
+    W_Axe,
+    W_Boomerang,
+    W_Candy,
+
+
     W_Hammer_1,
     W_Hammer_2,
     W_Hammer_3,
@@ -172,28 +179,6 @@ public enum PoolType
     B_Boomerang_1,
     B_Boomerang_2,
     B_Boomerang_3,
-
-    SKIN_Normal,
-    SKIN_Devil,
-    SKIN_Angle,
-    SKIN_Witch,
-    SKIN_Deadpool,
-    SKIN_Thor,
-
-    HAT_Arrow,
-    HAT_Cap,
-    HAT_Cowboy,
-    HAT_Crown,
-    HAT_Ear,
-    HAT_StrawHat,
-    HAT_Headphone,
-    HAT_Horn,
-    HAT_Police,
-
-    ACC_Book,
-    ACC_Captain,
-    ACC_Headphone,
-    ACC_Shield,
 
     TargetIndicator,
     BotName,
